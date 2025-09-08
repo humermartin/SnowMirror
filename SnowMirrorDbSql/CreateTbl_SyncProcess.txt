@@ -1,0 +1,101 @@
+USE [ServiceNowDbSyncMgnt]
+GO
+
+/****** Object:  Table [dbo].[SyncProcess]    Script Date: 08.09.2025 09:59:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[SyncProcess](
+	[Key] [varchar](500) NOT NULL,
+	[TableName] [varchar](255) NOT NULL,
+	[StartTime] [datetime2](7) NOT NULL,
+	[RecordsSynchronized] [int] NULL,
+	[RecordsFound] [int] NULL,
+	[Created] [datetime2](7) NULL,
+	[SynchronizationId] [uniqueidentifier] NULL,
+	[SyncTime] [datetime2](7) NULL,
+	[EndTime] [datetime2](7) NULL,
+	[RecordsInserted] [int] NOT NULL,
+	[RecordsUpdated] [int] NOT NULL,
+	[Pages] [int] NOT NULL,
+	[Page] [int] NOT NULL,
+	[Failures] [int] NOT NULL,
+	[MaxFailures] [int] NOT NULL,
+	[MaxFailuresPage] [int] NOT NULL,
+	[messages] [nvarchar](max) NULL,
+	[StopProcess] [bit] NOT NULL,
+	[SysId] [uniqueidentifier] NULL,
+	[FinalMessage] [nvarchar](max) NULL,
+	[FinalErrorMessage] [nvarchar](max) NULL,
+	[ThreadsPerTable] [int] NULL,
+	[ThreadSleepTime] [int] NULL,
+	[PageSize] [int] NULL,
+	[RequestTimeout] [int] NULL,
+	[ServiceStartTime] [datetime] NULL,
+	[RecordsDeleted] [int] NOT NULL,
+	[SuspendProcess] [bit] NOT NULL,
+	[PreviousEndTime] [datetime] NULL,
+	[PreviousStartTime] [datetime] NULL,
+	[GetDeltaRecordsFrom] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [RecordsInserted]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [RecordsUpdated]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [Pages]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [Page]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [Failures]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [MaxFailures]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [MaxFailuresPage]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [StopProcess]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT (NULL) FOR [ThreadsPerTable]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT (NULL) FOR [ThreadSleepTime]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT (NULL) FOR [PageSize]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT (NULL) FOR [RequestTimeout]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [RecordsDeleted]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT ((0)) FOR [SuspendProcess]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT (NULL) FOR [PreviousEndTime]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT (NULL) FOR [PreviousStartTime]
+GO
+
+ALTER TABLE [dbo].[SyncProcess] ADD  DEFAULT (NULL) FOR [GetDeltaRecordsFrom]
+GO
+
+

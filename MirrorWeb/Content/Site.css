@@ -1,0 +1,188 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.form-group{
+    padding-top: 15px;
+}
+
+.k-widget .k-dropdown {
+    width: 80px !important;
+}
+
+#availableColListBox {
+    width: 270px;
+}
+
+#availableColSection, #availableDayOfWeekListBox {
+    max-width: 860px;
+    width: 550px;
+    
+}
+
+#singleTableSelection, #dayOfWeekSelection .k-listbox {
+    width: 236px;
+    height: 300px;
+}
+
+#singleTableSelection, #dayOfWeekSelection .k-listbox:first-of-type {
+    width: 270px;
+    margin-right: 1px;
+}
+
+.k-listbox {
+    height: 300px !important;
+    width: 270px !important;
+    font-size: 14px;
+}
+.k-numerictextbox .k-input {
+    height: 35px;
+}
+
+/*Hide spinner input number*/
+
+/* For Firefox */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*Make input-group-prepend same width*/
+.input-group > .input-group-prepend {
+    flex: 0 0 20%;
+}
+
+.input-group .input-group-text {
+    width: 100%;
+}
+
+/*Text under icon in anchor and dont underline text on hover*/
+td i,
+td span {
+    display: block;
+}
+
+td a, td i {
+    text-align: center;
+}
+
+#iconPosition {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.date {
+    margin-left: 3.375rem;
+    font-size: .8125rem;
+    font-weight: 500;
+    color: #bebebe;
+}
+
+.center-block {
+    display: table; /* Instead of display:block */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.custHeaderBackground {
+    background-color: #820000 !important;
+}
+
+.custHeaderColor {
+    color: white !important;
+}
+
+.panelButton {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: solid 1.5px #820000;
+    border-radius: 5px;
+    background: rgba(255, 255, 255,0);
+}
+
+.panelButton:hover {
+    border: 1.5px solid lightcyan;
+}
+
+.k-state-selected {
+    background-color: #820000 !important;
+}
+
+#assignedAdUsersGrid .k-grid-header .k-header {
+    background-color: #820000;
+    color: white;
+}
+
+.k-progressbar {
+    width: 98% !important;
+}
+
+.k-dialog-buttongroup.k-dialog-button-layout-stretched {
+    padding: 0;
+    font-size: 12px;
+}
+
+.loader {
+    border: 12px solid #f3f3f3;
+    border-top: 12px solid #820000;
+    border-bottom: 12px solid #820000;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.k-window div.k-window-content {
+    overflow: hidden;
+}
+
+#mirrorHeader {
+    background-color: #460000 !important;
+}

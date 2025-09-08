@@ -1,0 +1,382 @@
+﻿
+@model MirrorWeb.ViewModels.Manage.SyncSchedulerViewModel
+
+<br />
+
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+        <!--Start-->
+        <div class="card-body">
+
+            <div id="syncData" class="col-xl-12 mb-5 mb-xl-0" style="padding: 0px;">
+                <div class="card shadow">
+                    <div class="card-header bg-transparent custHeaderBackground">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h5 class="text-white-50 mb-0 custHeaderColor">Synchronization Scheduler</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="snycSchedulerSettings" style="margin-left: 10px; margin-right: 10px;">
+
+                            <div class="row">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Synchronization Name</span>
+                                    </div>
+
+                                    <input id="synchronizationName" type="text" disabled="disabled" class="form-control" placeholder="@Model.SynchronizationName" aria-label="" aria-describedby="basic-addon1" value="@Model.SynchronizationName" style="font-size: 12px;">
+                                    <input id="synchronizationId" type="text" disabled="disabled" class="form-control" aria-label="" aria-describedby="basic-addon1" value="@Model.SynchronizationId" style="font-size: 12px;">
+                                </div>
+                            </div>
+
+                            <!-- TargetType -->
+                            <div class="row">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Target Type</span>
+                                    </div>
+                                    @Html.DropDownListFor(d => d.SelectedSyncTargetType, new SelectList(Model.SyncTargetTypes, "Value", "Text", 0), new { @class = "k-content", @id = "targetType", @style = "font-size: 12px; width: 175px;" })
+                                </div>
+                            </div>
+
+                            <!-- Target Settings -->
+                            <div class="row">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Target</span>
+                                    </div>
+                                    @Html.DropDownListFor(d => d.SelectedSyncTarget, new SelectList(Model.SyncTargets, "Value", "Text", 0), new { @class = "k-content", @id = "targetId", @style = "font-size: 12px; width:175px;" })
+                                </div>
+                            </div>
+
+                            <!-- Database Settings -->
+                            <div class="row" id="selectedDbRow">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Database Settings</span>
+                                    </div>
+                                    @Html.DropDownListFor(d => d.SelectedDatabaseSettings, new SelectList(Model.DatabaseSettings, "Value", "Text", 0), new { @class = "k-content", @id = "databaseSettingsId", @style = "font-size: 12px; width:175px;" })
+                                </div>
+                            </div>
+                            
+                            <!-- Kafka Mode -->
+                            <div class="row" id="schedulerKafkaModeId">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Kafka Mode</span>
+                                    </div>
+                                    @Html.DropDownListFor(d => d.SelectedKafkaMode, new SelectList(Model.KafkaModes, "Value", "Text", 0), new { @class = "k-content", @id = "selectedKafkaModeId", @style = "font-size: 12px; width: 175px;" })
+                                </div>
+                            </div>
+
+                            <!-- Instanz Settings -->
+                            <div class="row">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Instanz Settings</span>
+                                    </div>
+                                    @Html.DropDownListFor(i => i.SelectedInstanzSettings, new SelectList(Model.InstanzSettings, "Value", "Text", 0), new { @class = "k-content", @id = "instanzSettingsId", @style = "font-size: 12px; width:175px;" })
+                                </div>
+                            </div>
+
+                            <!-- Threads per Table -->
+                            <div class="row" id="schedulerThreadsPerTable">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Threads per Table (20)</span>
+                                    </div>
+                                    <input type="number" class="k-textbox" id="syncScheduleThreadsPerTable" value="@Model.ThreadsPerTable" style="font-size: 12px; width: 175px;" />
+                                </div>
+                            </div>
+
+                            <!-- Thread sleep-time-->
+                            <div class="row" id="schedulerThreadSleepTime">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Thread Sleep Time (1 sec)</span>
+                                    </div>
+                                    <input type="number" class="k-textbox" id="syncScheduleThreadSleepTime" value="@Model.ThreadSleepTime" style="font-size: 12px; width: 175px;" />
+                                </div>
+                            </div>
+
+                            <!-- PageSize-->
+                            <div class="row">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Page Size</span>
+                                    </div>
+                                    <input type="number" class="k-textbox" id="syncSchedulePageSize" value="@Model.PageSize" style="font-size: 12px; width: 175px;" />
+                                </div>
+                            </div>
+
+                            <!-- Kafka Block Size-->
+                            <div class="row" id="schedulerKafkaBlockSizeId">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Kafka Block Size</span>
+                                    </div>
+                                    <input type="number" class="k-textbox" id="syncScheduleKafkaBlockSize" value="@Model.KafkaBlockSize" style="font-size: 12px; width: 175px;" />
+                                </div>
+                            </div>
+                           
+                            <!-- Request Timeout-->
+                            <div class="row">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Request Timeout</span>
+                                    </div>
+                                    <input type="number" class="k-textbox" id="syncScheduleRequestTimeout" value="@Model.RequestTimeout" style="font-size: 12px; width: 175px;" />
+                                </div>
+                            </div>
+
+                            <!-- Synchronization Type -->
+                            <div class="row">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Synchronization Type</span>
+                                    </div>
+                                    @Html.DropDownListFor(i => i.SelectedSyncType, new SelectList(Model.SyncTypes, "Value", "Text", 0), new { @class = "k-content", @id = "syncTypeId", @onchange = "PreRenderBySyncType();", @style = "font-size: 12px; width:175px;" })
+
+                                </div>
+                            </div>
+
+                            <!-- Synchronization Interval -->
+                            <div class="row">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Synchronization Interval</span>
+                                    </div>
+                                    @Html.DropDownListFor(i => i.SelectedInterval, new SelectList(Model.SyncInverval, "Value", "Text", 0), new { @class = "k-content", @id = "syncIntervalId", @onchange = "PreRenderScheduler();", @style = "font-size: 12px; width:175px;" })
+                                </div>
+                            </div>
+
+                            <!-- Custom Delta Start -->
+                            <div class="row" id="custDeltaStart" style="display: none">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Custom Delta Start</span>
+                                    </div>
+                                    <input id="custDeltaStartPicker" title="datepicker" style="font-size: 12px; width: 175px;" value="@Model.CustomDeltaStart" />
+                                </div>
+                            </div>
+
+                            <!-- Subtract minutes from Delta Start -->
+                            <div class="row" id="syncScheduleSubtractFromMinutesId" style="display: block">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Subtract Minutes from Delta</span>
+                                    </div>
+                                    <input type="number" class="k-textbox" id="syncScheduleSubtractFromMinutes" value="@Model.SubtractMinutesFromDelta" style="font-size: 12px; width: 175px;" />
+                                </div>
+                            </div>
+
+                            <!-- Active Since -->
+                            <div class="row" id="schedulerActiveSince" style="display: none">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Active Since</span>
+                                    </div>
+                                    <input id="syncScheduleDatePicker" title="datepicker" style="font-size: 12px; width: 175px;" value="@Model.ActiveSince" />
+                                </div>
+                            </div>
+
+                            <!-- Days of Week -->
+                            <div class="row" id="schedulerDaysOfWeek" style="display: none; margin-bottom: 20px;">
+
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Days of Week</span>
+                                    </div>
+                                    <div>
+                                        <!-- Monday -->
+                                        <div class="input-group input-group-sm" style="width: 200px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 95px; font-size: 12px;">Monday</span>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox"
+                                                       class="bootstrap-switch"
+                                                       name="checkMonday"
+                                                       id="chkMonday"
+                                                       data-on-text="Ein"
+                                                       data-off-text="Aus"
+                                                       data-on-color="success"
+                                                       data-off-color="primary"
+                                                       data-size="small"
+                                                       checked="@Model.SelectedDaysOfWeek.FirstOrDefault(s => s.Day.Equals("Monday"))"
+                                                       style="font-size: 12px;" />
+                                            </div>
+                                            <span id="periodMondaySelected" style="visibility: hidden"></span>
+                                        </div>
+
+                                        <!-- Tuesday -->
+                                        <div class="input-group input-group-sm" style="width: 200px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 95px; font-size: 12px;">Tuesday</span>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox"
+                                                       class="bootstrap-switch"
+                                                       name="checkTuesday"
+                                                       id="chkTuesday"
+                                                       data-on-text="Ein"
+                                                       data-off-text="Aus"
+                                                       data-on-color="success"
+                                                       data-off-color="primary"
+                                                       data-size="small"
+                                                       checked="@Model.SelectedDaysOfWeek.FirstOrDefault(s => s.Day.Equals("Tuesday"))"
+                                                       style="font-size: 12px;" />
+                                            </div>
+                                            <span id="periodTuesdaySelected" style="visibility: hidden"></span>
+                                        </div>
+
+                                        <!-- Wednesday -->
+                                        <div class="input-group input-group-sm" style="width: 200px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 95px; font-size: 12px;">Wednesday</span>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox"
+                                                       class="bootstrap-switch"
+                                                       name="checkWednesday"
+                                                       id="chkWednesday"
+                                                       data-on-text="Ein"
+                                                       data-off-text="Aus"
+                                                       data-on-color="success"
+                                                       data-off-color="primary"
+                                                       data-size="small"
+                                                       checked="@Model.SelectedDaysOfWeek.FirstOrDefault(s => s.Day.Equals("Wednesday"))"
+                                                       style="font-size: 12px;" />
+                                            </div>
+                                            <span id="periodWednesdaySelected" style="visibility: hidden"></span>
+                                        </div>
+
+                                        <!-- Thursday -->
+                                        <div class="input-group input-group-sm" style="width: 200px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 95px; font-size: 12px;">Thursday</span>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox"
+                                                       class="bootstrap-switch"
+                                                       name="checkThursday"
+                                                       id="chkThursday"
+                                                       data-on-text="Ein"
+                                                       data-off-text="Aus"
+                                                       data-on-color="success"
+                                                       data-off-color="primary"
+                                                       data-size="small"
+                                                       checked="@Model.SelectedDaysOfWeek.FirstOrDefault(s => s.Day.Equals("Thursday"))"
+                                                       style="font-size: 12px;" />
+                                            </div>
+                                            <span id="periodThursdaySelected" style="visibility: hidden"></span>
+                                        </div>
+
+                                        <!-- Friday -->
+                                        <div class="input-group input-group-sm" style="width: 200px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 95px; font-size: 12px;">Friday</span>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox"
+                                                       class="bootstrap-switch"
+                                                       name="checkFriday"
+                                                       id="chkFriday"
+                                                       data-on-text="Ein"
+                                                       data-off-text="Aus"
+                                                       data-on-color="success"
+                                                       data-off-color="primary"
+                                                       data-size="small"
+                                                       checked="@Model.SelectedDaysOfWeek.FirstOrDefault(s => s.Day.Equals("Friday"))"
+                                                       style="font-size: 12px;" />
+                                            </div>
+                                            <span id="periodFridaySelected" style="visibility: hidden"></span>
+                                        </div>
+
+                                        <!-- Saturday -->
+                                        <div class="input-group input-group-sm" style="width: 200px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 95px; font-size: 12px;">Saturday</span>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox"
+                                                       class="bootstrap-switch"
+                                                       name="checkSaturday"
+                                                       id="chkSaturday"
+                                                       data-on-text="Ein"
+                                                       data-off-text="Aus"
+                                                       data-on-color="success"
+                                                       data-off-color="primary"
+                                                       data-size="small"
+                                                       checked="@Model.SelectedDaysOfWeek.FirstOrDefault(s => s.Day.Equals("Saturday"))"
+                                                       style="font-size: 12px;" />
+                                            </div>
+                                            <span id="periodSaturdaySelected" style="visibility: hidden"></span>
+                                        </div>
+
+                                        <!-- Sunday -->
+                                        <div class="input-group input-group-sm" style="width: 200px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 95px; font-size: 12px;">Sunday</span>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox"
+                                                       class="bootstrap-switch"
+                                                       name="checkSunday"
+                                                       id="chkSunday"
+                                                       data-on-text="Ein"
+                                                       data-off-text="Aus"
+                                                       data-on-color="success"
+                                                       data-off-color="primary"
+                                                       data-size="small"
+                                                       checked="@Model.SelectedDaysOfWeek.FirstOrDefault(s => s.Day.Equals("Sunday"))"
+                                                       style="font-size: 12px;" />
+                                            </div>
+                                            <span id="periodSundaySelected" style="visibility: hidden"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Time -->
+                            <div class="row" id="schedulerTime" style="display: none">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Time</span>
+                                    </div>
+                                    <input id="syncScheduleTimePicker" title="timepicker" style="font-size: 12px; width: 175px;" value="@Model.Time" />
+                                </div>
+                            </div>
+
+                            <!-- Intervall in minutes -->
+                            <div class="row" id="schedulerIntervalInMinutes" style="display: none">
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Interval</span>
+                                    </div>
+                                    <input type="text" class="k-textbox" id="syncScheduleIntervalInMinutes" style="font-size: 12px; width: 175px;" value="@Model.IntervalInMinutes" />
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <div id="btnFinishScheduler" style="text-align: center">
+                                <button class="btn btn-info" id="schedulerFinish" onclick="SaveCollectedSyncData();" style="font-size: 12px; color: white; background-color: #820000; width: 100px;">Finish</button>
+                            </div>
+
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/syncscheduler")
+}

@@ -1,0 +1,114 @@
+﻿@model MirrorWeb.ViewModels.Manage.SettingsViewModel
+
+<br />
+
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+
+        <div class="card-body">
+            <div id="snycSchedulerSettings" style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
+                <div id="settingSection">
+
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent custHeaderBackground">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="mb-0 custHeaderColor">Settings</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" style="margin-top: 20px; margin-bottom: 20px;">
+
+                            <div style="width: 100%; height: 150px;">
+                                <div style="float: left; width: 50%; height: 100%;">
+                                    <button class="panelButton" style="margin-right: 10px;" onclick="location.href='@Url.Action("DatabaseSettings", "Manage")'">
+                                        <i class="fa fa-database" style="font-size: 36px; color: #820000">&nbsp;&nbsp;&nbsp;
+                                            <span style="font-family: Tahoma; font-size: 20px;">Database Settings</span>
+                                        </i>
+                                    </button>
+                                </div>
+                                <div style="float: left; width: 50%; height: 100%;">
+                                    <button class="panelButton" style="margin-left: 10px;" onclick="location.href='@Url.Action("ServiceNowInstanceSettings", "Manage")'">
+                                        <i class="fa fa-globe" style="font-size: 36px; color: #820000">&nbsp;&nbsp;&nbsp;
+                                            <span style="font-family: Tahoma; font-size: 20px;">ServiceNow Instance Settings</span>
+                                        </i>
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div style="width: 100%; height: 150px; margin-top: 20px;">
+                                <div style="float: left; width: 50%; height: 100%; ">
+                                    <button class="panelButton" style="margin-right: 10px;" onclick="location.href='@Url.Action("PrincipalSettings", "Manage")'">
+                                        <i class="fa fa-user" style="font-size: 36px; color: #820000">&nbsp;&nbsp;&nbsp;                                            
+                                            <span style="font-family: Tahoma; font-size: 20px;">Manage AdminUser</span>
+                                        </i>
+                                    </button>
+                                </div>
+                                <div style="float: left; width: 50%; height: 100%;">
+                                    <button class="panelButton" style="margin-left: 10px;" onclick="location.href='@Url.Action("SynchronizationSettings", "Manage")'">
+                                        <i class="fa fa-power-off" style="font-size: 36px; color: #820000">&nbsp;&nbsp;&nbsp;
+                                            <span style="font-family: Tahoma; font-size: 20px;">Start/Stop Synchronizations</span>
+                                        </i>
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div style="width: 100%; height: 150px; margin-top: 20px;">
+                                <div style="float: left; width: 50%; height: 100%; ">
+                                    <button class="panelButton" style="margin-right: 10px;" onclick="location.href='@Url.Action("MailSettings", "Manage")'">
+                                        <i class="fa fa-envelope" style="font-size: 36px; color: #820000">&nbsp;&nbsp;&nbsp;
+                                            <span style="font-family: Tahoma; font-size: 20px;">MailAccount Setting</span>
+                                        </i>
+                                    </button>
+                                </div>
+                                <div style="float: left; width: 50%; height: 100%;">
+                                    <button class="panelButton" style="margin-left: 10px;" onclick="location.href='@Url.Action("GeneralSettings", "Manage")'">
+                                        <i class="fa fa-gears" style="font-size: 36px; color: #820000">&nbsp;&nbsp;&nbsp;
+                                            <span style="font-family: Tahoma; font-size: 20px;">General- UI & Sync Settings</span>
+                                        </i>
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            
+                            <div style="width: 100%; height: 150px; margin-top: 20px;">
+                                <div style="float: left; width: 50%; height: 100%; ">
+                                    <button class="panelButton" style="margin-right: 10px;" onclick="location.href='@Url.Action("InheritanceSettings", "Manage")'">
+                                        <i class="fa fa-table" style="font-size: 36px; color: #820000">&nbsp;&nbsp;&nbsp;
+                                            <span style="font-family: Tahoma; font-size: 20px;">Inheritance Setting</span>
+                                        </i>
+                                    </button>
+                                </div>
+                                <div style="float: left; width: 50%; height: 100%;">
+                                    <button class="panelButton" style="margin-left: 10px;" onclick="location.href='@Url.Action("SyncTargetSettings", "Manage")'">
+                                        <i class="fa fa-arrows" style="font-size: 36px; color: #820000">&nbsp;&nbsp;&nbsp;
+                                            <span style="font-family: Tahoma; font-size: 20px;">Synchronization Target</span>
+                                        </i>
+                                        
+                                    </button>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+}

@@ -1,0 +1,35 @@
+USE [ServiceNowDbSyncMgnt]
+GO
+
+/****** Object:  Table [dbo].[InstanzSettings]    Script Date: 08.09.2025 09:54:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[InstanzSettings](
+	[Id] [uniqueidentifier] NOT NULL,
+	[InstanzName] [varchar](100) NOT NULL,
+	[UserName] [varchar](100) NOT NULL,
+	[Password] [varchar](100) NOT NULL,
+	[ProxyServer] [varchar](100) NULL,
+	[ProxyUserName] [varchar](100) NULL,
+	[ProxyUserPassword] [varchar](100) NULL,
+	[ProxyPort] [int] NULL,
+	[LastChanged] [date] NULL,
+	[Created] [date] NULL,
+	[Servername] [varchar](256) NULL,
+	[Port] [int] NOT NULL,
+	[TableNameFormat] [nvarchar](256) NULL,
+ CONSTRAINT [PK_InstanzSettings] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[InstanzSettings] ADD  DEFAULT ((0)) FOR [Port]
+GO
+
+

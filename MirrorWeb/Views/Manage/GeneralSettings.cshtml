@@ -1,0 +1,303 @@
+﻿@model MirrorWeb.ViewModels.Manage.GeneralSettingsViewModel
+
+<br />
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+
+        <div class="card-body">
+            <div id="generalSettings" align="center" style="text-align: center">
+
+                <div class="card shadow">
+                    <div class="card-header bg-transparent custHeaderBackground">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="mb-0 custHeaderColor">General Settings</h5>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="generalSettingSection" style="width: 100%;">
+
+                        @using (Html.BeginForm("UpdateGeneralSettings", "Manage", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            <div class="card" style="width: 96%; margin: 20px;">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: left">ServiceNOW Interface Monitoring</h5>
+                                    <p class="card-text" style="font-size: 14px; text-align: left">
+                                        This settings allows you to create and update synchronization timestamps for start and end time in ServiceNow Interface-Monitoring table. It is possible to choose between two levels.
+                                        <ul style="text-align: left; font-size: 14px;">
+                                            <li>Level 'FullPackage' saves the start and end time from a table package(Synchronization of multiple tables)</li>
+                                            <li>Level 'SingleTable' saves each synchronized table to ServiceNOW.</li>
+                                        </ul>
+                                    </p>
+
+                                    <hr />
+
+                                    <!-- Interface Monitoring to SNOW -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Service-Now Interface Monitoring</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.MonitoringSettings.InterfaceMonitoring, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkInterfaceMonitoring" })
+                                        </div>
+
+                                        <!-- SNOW Instance -->
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px;">
+                                            <div class="input-group-prepend">
+                                                <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Monitoring Level</span>
+                                            </div>
+                                            @Html.DropDownListFor(m => m.MonitoringSettings.MonitoringLevel, Model.MonitoringLevels, "--- Select Level ---", new { @id = "monitoringLevel", @class = "form-control", @style = "font-size:12px;" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card" style="width: 96%; margin: 20px;">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: left">ServiceNOW Setup sync blocking Users</h5>
+                                    <p class="card-text" style="font-size: 14px; text-align: left">
+                                        This settings allows you to kill SQL Server users which blocks the drop statement for full synchronizations. This settings is only available for production sync.
+                                        <ul style="text-align: left; font-size: 14px;">
+                                            <li>A stored procedure will be executed which kills all sessions by the user that blocks a drop and rename table</li>
+                                        </ul>
+                                    </p>
+
+                                    <hr />
+
+                                    <!-- Allow SQL Server session kill -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Allow SQL Server session kill</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.SqlSessionSettings.EnableKilleSession, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkEnableKillSession" })
+                                        </div>
+
+                                        <!-- Stored Procedure -->
+                                        <div class="input-group input-group-sm" style="margin-top: 30px;">
+                                            <div class="input-group-prepend">
+                                                <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Stored Procedure</span>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.SqlSessionSettings.StoredProcedure, new { @class = "k-textbox", @id = "txtStoredProcedure", @style = "font-size:12px; width: 300px;" })
+                                        </div>
+
+                                        <!-- SQL User -->
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px;">
+                                            <div class="input-group-prepend">
+                                                <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">SQL User</span>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.SqlSessionSettings.SqlUserName, new { @class = "k-textbox", @id = "txtKillSession", @style = "font-size:12px; width: 300px;" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Synchronization Notify Alert settings -->
+                            <div class="card" style="width: 96%; margin: 20px;">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: left">Synchronization Alert Monitoring</h5>
+                                    <p class="card-text" style="font-size: 14px; text-align: left">
+                                        This settings allows you to enable/disable sending an email notification for synchronizations that are not started at scheduled time. Setup the check interval and recipients who should receive the alert mail.
+                                        <ul style="text-align: left; font-size: 14px;">
+                                            <li>Change setting 'Enable/Disable Synchronization Alert Notify' requires an IIS reset</li>
+                                            <li>Change setting 'Interval in minutes' requires an IIS reset</li>
+                                        </ul>
+                                    </p>
+
+                                    <hr />
+
+                                    <!-- Enable/Disable alert notify -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Enable/Disable Synchronization Alert Notify</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.AlertNotifySettings.SynchronizationAlertNotify, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkSynchronizationAlertNotify" })
+                                        </div>
+                                    </div>
+
+                                    <!-- DeltaSync Interval in minutes -->
+                                    <div class="input-group input-group-sm" style="margin-top: 30px;">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Specify the monitoring interval/minutes for delta synchronizations</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.AlertNotifySettings.DeltaSyncIntervalInMinutes, new { @class = "k-textbox", @id = "txtDeltaSyncIntervalInMinutes", @style = "font-size:12px; width: 80px;" })
+                                    </div>
+
+                                    <!-- FailedSync Interval in minutes -->
+                                    <div class="input-group input-group-sm" style="margin-top: 30px;">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Specify the monitoring interval/minutes for failed synchronizations</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.AlertNotifySettings.FailedSyncIntervalInMinutes, new { @class = "k-textbox", @id = "txtFailedSyncIntervalInMinutes", @style = "font-size:12px; width: 80px;" })
+                                    </div>
+
+                                    <!-- Enable/Disable notify on failed sync -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Enable/Disable Notify for failed synchronizations</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.AlertNotifySettings.NotifyOnFailedSync, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkNotifyOnFailedSync" })
+                                        </div>
+                                    </div>
+
+                                    <!-- Enable/Disable notify on not started synchronizations -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Enable/Disable Notify for not started synchronizations</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.AlertNotifySettings.NotifyOnNotStartedSync, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkNotifyOnNotStartedSync" })
+                                        </div>
+                                    </div>
+
+                                    <!-- Notify Recipients -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px;">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Notify Recipients</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div id="notifyRecipientGrid" style="font-size: 12px; margin: 20px;"></div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Enable/Disable Retry process for failed tables -->
+                            <div class="card" style="width: 96%; margin: 20px;">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: left">Automatic retry failed synchronizations</h5>
+                                    <p class="card-text" style="font-size: 14px; text-align: left">
+                                        This settings allows you to enable/disable an automatic retry process for failed table synchronizations.
+                                    </p>
+
+                                    <hr />
+
+                                    <!-- Enable/Disable Retry process for Full Syncs -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Enable/Disable Retry process for Full Syncs</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.ProcessSettings.AutomaticRetryProcessFullSync, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkAutomaticRetryProcessFullSync" })
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Enable/Disable Retry process for Delta Syncs-->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Enable/Disable Retry process for Delta Syncs</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.ProcessSettings.AutomaticRetryProcessDeltaSync, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkAutomaticRetryProcessDeltaSync" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- WebUI GridSettings -->
+                            <div class="card" style="width: 96%; margin: 20px;">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: left">WebUI Grid Settings</h5>
+                                    <p class="card-text" style="font-size: 14px; text-align: left">
+                                        This settings allows you to setup the Synchronization Grid Layout.
+                                    </p>
+
+                                    <hr />
+
+                                    <!-- Enable/Disable column SnowCount -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Enable/Disable column SnowCount</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.GridSettings.EnableColumnSnowCount, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkEnableColumnSnowCount" })
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Enable/Disable column RecordCount -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Enable/Disable column RecordCount</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.GridSettings.EnableColumnRecordCount, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkEnableColumnRecordCount" })
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Enable/Disable column SQlCount -->
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-top: 30px; width: 100%">
+                                        <div class="input-group-prepend">
+                                            <span class="card-title itemLabel" style="width: 600px; font-size: 14px;">Enable/Disable column SQLCount</span>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBoxFor(x => x.GridSettings.EnableColumnSqlCount, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkEnableColumnSqlCount" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Schema Change Notification -->
+                            <div class="card" style="width: 96%; margin: 20px;">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: left">Schema change notification</h5>
+                                    <p class="card-text" style="font-size: 14px; text-align: left">
+                                        This settings allows you to add/remove users to notify on Service NOW table schema changes.
+                                    </p>
+
+                                    <hr />
+
+                                    <div class="row">
+                                        <div id="notifyTableSchemaChangeGrid" style="font-size: 12px; margin: 20px;"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--update settings-->
+                            <div class="row" style="margin: 20px">
+                                <div class="col text-center">
+                                    <button type="submit" class="btn custHeaderBackground" id="updateGeneralSettings" style="font-size: 12px; color: white">Update</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/syncAdminSettings")
+}

@@ -1,0 +1,179 @@
+﻿@model MirrorWeb.ViewModels.Monitoring.MonitoringViewModel
+
+@*<script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>*@
+
+<br />
+
+<div id="breadcrumbMonitoring" style="margin-top: 15px;">
+    <button id="loadDeltaSyncs" class="btn custHeaderBackground" style="font-size: 12px; color: white">Load Delta Synchronizations</button>
+    <button id="loadNodesKit" class="btn custHeaderBackground" style="font-size: 12px; color: white">Load Nodes Stat a1kit</button>
+    <button id="loadNodesInt" class="btn custHeaderBackground" style="font-size: 12px; color: white">Load Nodes Stat a1int</button>
+    <button id="loadNodesProd" class="btn custHeaderBackground" style="font-size: 12px; color: white">Load Nodes Stat a1prod</button>
+    <button id="loadServiceLogFile" class="btn custHeaderBackground" style="font-size: 12px; color: white">Load Service LogFile</button>
+    <button id="loadWebAppLogFile" class="btn custHeaderBackground" style="font-size: 12px; color: white">Load WebApp LogFile</button>
+</div>
+
+<div class="row mt-5" id="deltaSyncMonitoring" style="display: none;">
+    <!-- Synchronizations from SyncType DELTA-->
+    <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="text-black mb-0 custHeaderColor">Synchronization Type DELTA - last 30 days activity<span id="loadedInSeconds" style="float: right; color: white; font-size: 9px; line-height: 30px;"></span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div style="width: 10%; margin: 0 auto">
+                    <div class="loader"></div>
+                </div>
+
+                <div id="monitorGrid" style="font-size: 12px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5" id="nodeStateMonitoring" style="display: none;">
+    <!-- ServiceNOW Node overview-->
+    <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="text-black mb-0 custHeaderColor" id="headerNodeOverview">Service NOW - Nodes</h4>
+                        <h5 class="text-black mb-0 custHeaderColor" id="headerNodeInstance"></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div style="width: 10%; margin: 0 auto">
+                    <div class="loader"></div>
+                </div>
+
+                <div id="nodesStateGrid" style="font-size: 12px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5" id="nodeStateParams" style="display: none;">
+    <!-- ServiceNOW Node param-->
+    <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div id="header">
+                            <h4 class="text-black mb-0 custHeaderColor" id="headerNode" style="float: left">Diagnostic Page</h4>
+                            <h5 class="text-black mb-0 custHeaderColor" id="headerNodeParam" style="float: right"></h5>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div id="nodeSettings" style="margin-left: 10px; margin-right: 10px;">
+
+                    <hr class="solid">
+
+                    <!-- Name -->
+                    <dl class="row">
+                        <dt class="col">Cluster Node</dt>
+                        <dd class="col" id="schedulerSystemId"></dd>
+                    </dl>
+                    <hr class="solid">
+
+                    <!-- Status -->
+                    <dl class="row">
+                        <dt class="col">Status</dt>
+                        <dd class="col" id="nodeStatus"></dd>
+                    </dl>
+                    <hr class="solid">
+
+                    <!-- Logged in users -->
+                    <dl class="row">
+                        <dt class="col">Logged In Users</dt>
+                        <dd class="col" id="loggedInUsers"></dd>
+                    </dl>
+                    <hr class="solid">
+
+                    <!-- Memory in use from total -->
+                    <dl class="row">
+                        <dt class="col">Memory (MB)</dt>
+                        <dd class="col" id="memoryStat"></dd>
+                    </dl>
+                    <hr class="solid">
+
+                    <!-- Scheduler is running-->
+                    <dl class="row">
+                        <dt class="col">Scheduler is running</dt>
+                        <dd class="col" id="schedulerIsRunning"></dd>
+                    </dl>
+                    <hr class="solid">
+
+                    <!-- Scheduler queue length -->
+                    <dl class="row">
+                        <dt class="col">Scheduler queue length</dt>
+                        <dd class="col" id="schedulerQueueLength"></dd>
+                    </dl>
+                    <hr class="solid">
+
+                    <!-- Cancelled transactions -->
+                    <dl class="row">
+                        <dt class="col">Cancelled transactions</dt>
+                        <dd class="col" id="servletCancelledTransactions"></dd>
+                    </dl>
+                    <hr class="solid">
+
+                    <!-- Transactions -->
+                    <dl class="row">
+                        <dt class="col">Transactions</dt>
+                        <dd class="col" id="servletTransactions"></dd>
+                    </dl>
+                    <hr class="solid">
+
+                    <!-- Errors handled -->
+                    <dl class="row">
+                        <dt class="col">Errors handled</dt>
+                        <dd class="col" id="servletErrorsHandled"></dd>
+                    </dl>
+                    <hr class="solid">
+                    
+
+                </div>
+
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="row mt-5" id="showWebAppLogContent" style="display: none;">
+    <!-- Synchronizations from SyncType DELTA-->
+    <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="text-black mb-0 custHeaderColor">SnowMirror UI WebApp Logging</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="loggingWebApp" style="font-size: 12px;white-space: pre-wrap"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/monitoring")
+}

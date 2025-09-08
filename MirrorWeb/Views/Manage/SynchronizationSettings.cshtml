@@ -1,0 +1,37 @@
+﻿@model MirrorWeb.ViewModels.Manage.SynchronizationSettingsViewModel
+
+<br />
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+        
+        <div class="card" style="width: 96%; margin: 20px;">
+            <div class="card-body">
+                <h5 class="card-title">Manage Synchronization</h5>
+                <p class="card-text">Lists an overview about created synchronizations and their current status. Administrator is permitted to 
+                    <ul>
+                        <li>Stopp running synchronizatons</li>
+                        <li>Enable/Disable synchronizatons(current running synchronization will finish his process)</li>
+                        <li>Delete synchronizaton with included processes</li>
+                        <li>Delete processes from synchronization</li>
+                    </ul>
+                    </p>
+            </div>
+        </div>
+
+        <div class="card-body" style="font-size: 12px;">
+            <div id="synchronizationGrid"></div>
+        </div>
+
+    </div>
+</div>
+
+<div id="dlgDelSync">
+    <div id="kDialog" style="font-size: 14px;">
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/manageSynchronizations")
+}

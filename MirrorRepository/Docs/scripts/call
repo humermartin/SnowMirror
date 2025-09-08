@@ -1,0 +1,9 @@
+URL=https://a1int.service-now.com/api/now/table/$1
+shift
+if [ $# -gt 0 ]; then 
+	PARMS="$1"
+	shift
+fi
+for p in $*; do PARMS="$PARMS&$p"; done 
+
+curl -u 'servicenow.srv.snowdbsync:].8fgD>W' ${URL}?${PARMS}

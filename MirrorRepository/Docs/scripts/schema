@@ -1,0 +1,10 @@
+URL=https://a1int.service-now.com/$1.do?SCHEMA
+shift
+if [ $# -gt 0 ]; then 
+	PARMS="$1"
+	shift
+fi
+for p in $*; do PARMS="$PARMS&$p"; done 
+[ "$PARMS" != "" ] && PARMS="&"$PARMS
+ 
+curl -u 'servicenow.srv.snowdbsync:].8fgD>W' "$URL${PARMS}"

@@ -1,0 +1,20 @@
+USE [ServiceNowDbSyncMgnt]
+GO
+
+/****** Object:  Table [dbo].[ScriptCommand]    Script Date: 08.09.2025 09:57:18 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ScriptCommand](
+	[Id] [uniqueidentifier] NULL,
+	[TableName] [varchar](256) NULL,
+	[Command] [varchar](2048) NULL,
+	[Created] [varchar](256) NULL,
+	[Synchronization_Id] [uniqueidentifier] NULL
+) ON [PRIMARY]
+GO
+
+

@@ -1,0 +1,87 @@
+﻿@model MirrorWeb.ViewModels.Manage.SynchronizationViewModel
+
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+        <div class="card-header border-0">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="mb-0">Single Table Synchronization</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <div id="snycSingleTableSettings" style="margin-left: 10px; margin-right: 10px;">
+
+                <div class="row">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px;">Synchronization Name</span>
+                        </div>
+
+                        <input id="synchronizationNameId" type="text" disabled="disabled" class="form-control" placeholder="@Model.SynchronizationName" aria-label="" aria-describedby="basic-addon1" value="@Model.SynchronizationName">
+                        <input id="synchronizationId" type="text" disabled="disabled" class="form-control" placeholder="@Model.SynchronizationId" aria-label="" aria-describedby="basic-addon1" value="@Model.SynchronizationName">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px;">TableName from Service Now</span>
+                        </div>
+                        <input id="fieldTableName" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px;">Auto Schema Update</span>
+                        </div>
+                        <div>
+                            <input type="checkbox"
+                                   class="bootstrap-switch"
+                                   name="checkAutoSchemaUpdate"
+                                   id="chkAutoSchemaUpdate"
+                                   data-on-text="Ein"
+                                   data-off-text="Aus"
+                                   data-on-color="success"
+                                   data-off-color="primary"
+                                   data-size="small" />
+                        </div>
+                        <span id="autoSchemaUpdateSelected" style="visibility: hidden"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1" style="width: 200px;">Columns to Synchronize</span>
+                        </div>
+
+                        <!-- Single Table selection -->
+                        <div id="singleTableSelection" style="display: none" role="application">
+                            <div id="availableColSection" class="k-content">
+                                <div>
+                                    <select id="availableColListBox"></select>
+                                    <select id="selected"></select>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="btnColumnsSelected" style="display: none">
+                    <button class="btn btn-info" id="colSelectedNext" onclick="PostSyncSettings(false);" style="font-size: 12px;">Next</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

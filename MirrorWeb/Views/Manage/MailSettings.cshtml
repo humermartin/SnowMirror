@@ -1,0 +1,121 @@
+﻿
+@model MirrorWeb.ViewModels.Manage.MailAccountSettingsViewModel
+
+<br />
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+
+        <div class="card-body">
+            <div id="databaseSettings" align="center" style="text-align: center">
+
+                <div class="card shadow">
+                    <div class="card-header bg-transparent custHeaderBackground">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="mb-0 custHeaderColor">MailAccount Settings</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="margin-top: 40px; margin-bottom: 40px;">
+                        <div>
+                            
+                            <div id="mailAccountSection" style="width: 100%;">
+
+                                @using (Html.BeginForm("UpdateNotification","Manage", FormMethod.Post, new {@class = "form-horizontal"}))
+                                {
+                                    <div class="row" style="margin: 20px">
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 190px;font-size: 12px">Send Mail</span>
+                                            </div>
+                                            @Html.CheckBoxFor(x => x.NotificationSettings.MailSendEnabled, new { @checked = "checked", @class= "bootstrap-switch", @id = "chkMailSendEnabled"})
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin: 20px">
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 190px; font-size: 12px;">Mail-Server</span>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.NotificationSettings.MailServer, new {@id = "mailServerName", @class = "k-textbox", @style = "font-size:12px; width: 400px;", })
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin: 20px">
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 190px; font-size: 12px;">Mail-Server Port</span>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.NotificationSettings.MailServerPort, new {@id = "mailServerPort", @class = "k-textbox", @style = "font-size:12px; width: 400px;", })
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin: 20px">
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 190px; font-size: 12px;">Mailbox UserName</span>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.NotificationSettings.MailBoxUserName, new {@id = "mailboxUserName", @class = "k-textbox", @style = "font-size:12px; width: 400px;", })
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin: 20px">
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 190px; font-size: 12px;">Mailbox Sender</span>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.NotificationSettings.MailBoxSender, new {@id = "mailboxSender", @class = "k-textbox", @style = "font-size:12px; width: 400px;", })
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin: 20px">
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 190px; font-size: 12px;">Smtp UserName</span>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.NotificationSettings.SmtpUserName, new {@id = "smtpUserName", @class = "k-textbox", @style = "font-size:12px; width: 400px;", })
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin: 20px">
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 190px; font-size: 12px;">Smtp Password</span>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.NotificationSettings.SmtpPassword, new {@id = "smtpPassword", @class = "k-textbox", @type = "password", @autocomplete = "new-password", @style = "font-size:12px; width:400px;",})
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin: 20px">
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 190px;font-size: 12px">Use SSL/TLS</span>
+                                            </div>
+
+                                            @Html.CheckBoxFor(x => x.NotificationSettings.UseSsl, new { @checked = "checked", @class = "bootstrap-switch", @id = "chkUseSSL" })
+                                            
+                                        </div>
+                                    </div>
+
+                                    <!--multiple recipients-->
+
+                                    <div style="width: 100%; margin: 20px">
+                                        <div class="col text-center">
+                                            <button type="submit" class="btn custHeaderBackground" id="updateNotification" style="font-size: 12px; color: white">Update</button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/syncAdminSettings")
+}

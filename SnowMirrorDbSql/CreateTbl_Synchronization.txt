@@ -1,0 +1,104 @@
+USE [ServiceNowDbSyncMgnt]
+GO
+
+/****** Object:  Table [dbo].[Synchronization]    Script Date: 08.09.2025 09:59:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Synchronization](
+	[id] [uniqueidentifier] NOT NULL,
+	[enabled] [bit] NOT NULL,
+	[runImmediately] [bit] NOT NULL,
+	[name] [varchar](255) NOT NULL,
+	[syncInterval] [varchar](255) NOT NULL,
+	[syncActiveSinceDate] [varchar](32) NULL,
+	[syncStartTime] [varchar](5) NULL,
+	[daysOfWeek] [varchar](80) NULL,
+	[periodInterval] [int] NULL,
+	[autoSchemaUpdate] [bit] NOT NULL,
+	[snowTables] [varchar](max) NULL,
+	[snowColumns] [varchar](max) NULL,
+	[created] [datetime2](7) NULL,
+	[DatabaseSettingsId] [uniqueidentifier] NULL,
+	[InstanzSettingsId] [uniqueidentifier] NULL,
+	[SyncTypeId] [uniqueidentifier] NULL,
+	[SyncTargetId] [uniqueidentifier] NULL,
+	[ThreadsPerTable] [int] NULL,
+	[ThreadSleepTime] [int] NULL,
+	[StartDate] [datetime] NULL,
+	[EndDate] [datetime] NULL,
+	[messages] [nvarchar](max) NULL,
+	[MaxErrorsPerPage] [int] NOT NULL,
+	[PageSize] [int] NOT NULL,
+	[KafkaBlockSize] [int] NULL,
+	[KafkaMode] [varchar](255) NULL,
+	[FinalMessage] [nvarchar](max) NULL,
+	[FinalErrorMessage] [nvarchar](max) NULL,
+	[MaxThreads] [int] NOT NULL,
+	[RequestTimeout] [int] NOT NULL,
+	[UsedCoreTables] [varchar](max) NULL,
+	[ServiceStartDate] [datetime] NULL,
+	[ExecuteCleanup] [bit] NOT NULL,
+	[CustomDeltaStart] [datetime] NULL,
+	[SubtractMinutesFromDelta] [int] NOT NULL,
+	[CreatedBy] [varchar](255) NULL,
+	[UpdatedBy] [varchar](255) NULL,
+ CONSTRAINT [PK__Synchron__3213E83F956B0A38] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__enabl__286302EC]  DEFAULT ((0)) FOR [enabled]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__runIm__29572725]  DEFAULT ((0)) FOR [runImmediately]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__autoS__2A4B4B5E]  DEFAULT ((0)) FOR [autoSchemaUpdate]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__SyncT__6CA31EA0]  DEFAULT (NULL) FOR [SyncTargetId]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__Threa__4222D4EF]  DEFAULT ((0)) FOR [ThreadsPerTable]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__Threa__4316F928]  DEFAULT ((0)) FOR [ThreadSleepTime]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__MaxEr__46E78A0C]  DEFAULT ((50)) FOR [MaxErrorsPerPage]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__PageS__47DBAE45]  DEFAULT ((1000)) FOR [PageSize]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__EsbPa__0C1BC9F9]  DEFAULT (NULL) FOR [KafkaBlockSize]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__MaxTh__48CFD27E]  DEFAULT ((20)) FOR [MaxThreads]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__Reque__49C3F6B7]  DEFAULT ((30)) FOR [RequestTimeout]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__Execu__01142BA1]  DEFAULT ((0)) FOR [ExecuteCleanup]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__Custo__607251E5]  DEFAULT (NULL) FOR [CustomDeltaStart]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__Subtr__19AACF41]  DEFAULT ((0)) FOR [SubtractMinutesFromDelta]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__Creat__5BAD9CC8]  DEFAULT (NULL) FOR [CreatedBy]
+GO
+
+ALTER TABLE [dbo].[Synchronization] ADD  CONSTRAINT [DF__Synchroni__Updat__5CA1C101]  DEFAULT (NULL) FOR [UpdatedBy]
+GO
+
+

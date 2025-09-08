@@ -1,0 +1,21 @@
+USE [ServiceNowDbSyncMgnt]
+GO
+
+/****** Object:  Table [dbo].[NotificationHistory]    Script Date: 08.09.2025 09:56:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[NotificationHistory](
+	[Id] [uniqueidentifier] NOT NULL,
+	[InstanceId] [uniqueidentifier] NULL,
+	[SynchronizationId] [uniqueidentifier] NULL,
+	[MessageId] [varchar](255) NULL,
+	[Message] [varchar](max) NULL,
+	[CreateTime] [datetime] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+

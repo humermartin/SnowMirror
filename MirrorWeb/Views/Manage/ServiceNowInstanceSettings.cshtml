@@ -1,0 +1,130 @@
+﻿@model MirrorWeb.ViewModels.Manage.ServiceNowInstanceSettingsViewModel
+
+<br />
+
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+
+        <div class="card-body">
+
+            <div id="instanceSettings" align="center" style="text-align: center">
+
+                <div class="card shadow">
+                    <div class="card-header bg-transparent custHeaderBackground">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="mb-0 custHeaderColor">Service Now Instance Settings</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="margin-top: 40px; margin-bottom: 40px;">
+                        <div>
+                            @if (Model.Instances != null)
+                            {
+                                <div class="btn-toolbar" role="toolbar" style="display:inline-block">
+                                    <div class="btn-group mr-2" role="group">
+                                        @Html.DropDownListFor(m => m.InstanceName, Model.Instances, "--- Select Instance ---", new { @id = "Instances", @class = "form-control", @onchange = "SetInstanceValues()", @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="btn-group mr-2" role="group">
+                                        <a href="javascript:addNewSnowInstance()"><i class="fa fa-plus" style="font-size:12px"></i></a>
+                                    </div>
+                                </div>
+                            }
+                            <br />
+                            <br />
+
+                            <div id="snowInstanceSection" style="text-align: center; margin: auto; width: 390px;">
+                                @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                                {
+                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="InsertOrNot" id="InsertOrNot" value="Insert" hidden />
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Instance ID</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.Id, new { @name = "snowInstanceID", @id = "snowInstanceID", @class = "form-control", @readonly = true, @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Instance Host</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.InstanceName, new { @name = "snowInstanceHost", @id = "snowInstanceHost", @class = "form-control", @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Servername</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.Servername, new { @name = "snowServername", @id = "snowServername", @class = "form-control", @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Port</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.Port, new { @name = "snowPort", @id = "snowPort", @class = "form-control", @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Username</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.UserName, new { @name = "snowUserName", @id = "snowUserName", @class = "form-control", @autocomplete = "new-password", @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Password</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.PW, new { @name = "snowPW", @id = "snowPW", @class = "form-control", @type = "password", @autocomplete = "new-password", @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Proxy Host</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.ProxyHost, new { @name = "snowProxyHost", @id = "snowProxyHost", @class = "form-control", @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Proxy Port</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.ProxyPort, new { @name = "snowProxyPort", @id = "snowProxyPort", @class = "form-control", @type = "number", @min = 1, @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Proxy Username</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.ProxyUser, new { @name = "snowProxyUserName", @id = "snowProxyUserName", @class = "form-control", @autocomplete = "new-password", @style = "font-size:12px;" })
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 115px; font-size:12px;">Proxy Password</span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.ProxyPW, new { @name = "snowProxyPW", @id = "snowProxyPW", @class = "form-control", @type = "password", @autocomplete = "new-password", @style = "font-size:12px;" })
+                                    </div>
+
+                                    <input class="btn custHeaderBackground" type="submit" value="Save" formaction="InsertServiceNowInstanceSettings" formmethod="post" style="font-size:12px; color: white" />
+                                    <input class="btn custHeaderBackground" type="submit" value="Update" formaction="UpdateServiceNowInstanceSettings" formmethod="post" id="Update" style="font-size:12px; color: white" />
+                                    <input class="btn custHeaderBackground" type="submit" value="Delete" formaction="RemoveServiceNowInstanceSettings" formmethod="post" id="Remove" style="font-size:12px; color: white" />
+                                    <input class="btn custHeaderBackground" type="button" value="Test Connection" onclick="testSnowConn()" id="TestConnection" style="font-size:12px; color: white" />
+                                }
+                                <h1 id="connSucces" hidden></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/syncAdminSettings")
+}

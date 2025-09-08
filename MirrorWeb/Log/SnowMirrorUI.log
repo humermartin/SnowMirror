@@ -1,0 +1,279 @@
+2025-09-04 09:54:07,355 [10] ERROR MirrorRepository.SnowTableApi.TableApiClient`1 - GetFull. Error: status: failure
+Der Remoteserver hat einen Fehler zurückgegeben: (401) Nicht autorisiert.
+
+message: User Not Authenticated
+detail: Required to provide Auth information
+
+2025-09-04 10:20:29,588 [10] ERROR MirrorRepository.SnowTableApi.TableApiClient`1 - GetFull. Error: status: failure
+Der Remoteserver hat einen Fehler zurückgegeben: (401) Nicht autorisiert.
+
+message: User Not Authenticated
+detail: Required to provide Auth information
+
+2025-09-04 10:22:48,060 [10] ERROR MirrorRepository.SnowTableApi.TableApiClient`1 - GetFull. Error: status: failure
+Der Remoteserver hat einen Fehler zurückgegeben: (401) Nicht autorisiert.
+
+message: User Not Authenticated
+detail: Required to provide Auth information
+
+2025-09-04 10:34:20,370 [14] ERROR MirrorRepository.SnowTableApi.TableApiClient`1 - GetFull. Error: status: failure
+Der Remoteserver hat einen Fehler zurückgegeben: (401) Nicht autorisiert.
+
+message: User Not Authenticated
+detail: Required to provide Auth information
+
+2025-09-04 10:34:39,977 [11] ERROR MirrorRepository.SnowTableApi.TableApiClient`1 - GetFull. Error: status: failure
+Der Remoteserver hat einen Fehler zurückgegeben: (401) Nicht autorisiert.
+
+message: User Not Authenticated
+detail: Required to provide Auth information
+
+2025-09-04 10:35:44,191 [10] ERROR MirrorRepository.SnowTableApi.TableApiClient`1 - GetFull. Error: status: failure
+Der Remoteserver hat einen Fehler zurückgegeben: (401) Nicht autorisiert.
+
+message: User Not Authenticated
+detail: Required to provide Auth information
+
+2025-09-04 10:38:20,547 [10] ERROR MirrorRepository.SnowTableApi.TableApiClient`1 - GetFull. Error: status: failure
+Der Remoteserver hat einen Fehler zurückgegeben: (401) Nicht autorisiert.
+
+message: User Not Authenticated
+detail: Required to provide Auth information
+
+2025-09-04 10:39:34,805 [11] INFO MirrorRepository.SnowProcessor - RetrySyncProcess. User: Martin (Q387392) started synchronization: AccessCard_Delta with following table(s): u_accesscard_autoprofile
+2025-09-04 10:39:36,070 [12] INFO DbConnection - Id:Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized:Entity Framework Core 3.1.32 initialized 'SnowDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: CommandTimeout=600 
+2025-09-04 10:39:36,077 [12] INFO DbConnection - Id:Microsoft.EntityFrameworkCore.Infrastructure.ContextInitialized:Entity Framework Core 3.1.32 initialized 'SnowDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: CommandTimeout=600 
+2025-09-04 10:40:50,835 [6] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError:An error occurred using the connection to database 'ServiceNowDbSyncMgnt' on server 'VMSNWQP160\ICTS_SNOW_DWH'.
+2025-09-04 10:40:50,835 [65] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError:An error occurred using the connection to database 'ServiceNowDbSyncMgnt' on server 'VMSNWQP160\ICTS_SNOW_DWH'.
+2025-09-04 10:40:53,587 [64] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError:An error occurred using the connection to database 'ServiceNowDbSyncMgnt' on server 'VMSNWQP160\ICTS_SNOW_DWH'.
+2025-09-04 10:40:53,590 [35] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError:An error occurred using the connection to database 'ServiceNowDbSyncMgnt' on server 'VMSNWQP160\ICTS_SNOW_DWH'.
+2025-09-04 10:40:59,251 [64] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Query.QueryIterationFailed:An exception occurred while iterating over the results of a query for context type 'MirrorRepository.ServiceNowDbSyncMgntEntities'.
+System.InvalidOperationException: Timeout abgelaufen. Das Zeitlimit ist vor dem Anfordern einer Verbindung aus dem Pool abgelaufen. Möglicherweise werden alle Verbindungen im Pool bereits verwendet, und die maximale Poolgröße wurde erreicht.
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+System.InvalidOperationException: Timeout abgelaufen. Das Zeitlimit ist vor dem Anfordern einer Verbindung aus dem Pool abgelaufen. Möglicherweise werden alle Verbindungen im Pool bereits verwendet, und die maximale Poolgröße wurde erreicht.
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+2025-09-04 10:40:59,254 [65] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Query.QueryIterationFailed:An exception occurred while iterating over the results of a query for context type 'MirrorRepository.ServiceNowDbSyncMgntEntities'.
+System.InvalidOperationException: Timeout abgelaufen. Das Zeitlimit ist vor dem Anfordern einer Verbindung aus dem Pool abgelaufen. Möglicherweise werden alle Verbindungen im Pool bereits verwendet, und die maximale Poolgröße wurde erreicht.
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+System.InvalidOperationException: Timeout abgelaufen. Das Zeitlimit ist vor dem Anfordern einer Verbindung aus dem Pool abgelaufen. Möglicherweise werden alle Verbindungen im Pool bereits verwendet, und die maximale Poolgröße wurde erreicht.
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+2025-09-04 10:40:59,253 [6] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Query.QueryIterationFailed:An exception occurred while iterating over the results of a query for context type 'MirrorRepository.ServiceNowDbSyncMgntEntities'.
+System.InvalidOperationException: Timeout abgelaufen. Das Zeitlimit ist vor dem Anfordern einer Verbindung aus dem Pool abgelaufen. Möglicherweise werden alle Verbindungen im Pool bereits verwendet, und die maximale Poolgröße wurde erreicht.
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+System.InvalidOperationException: Timeout abgelaufen. Das Zeitlimit ist vor dem Anfordern einer Verbindung aus dem Pool abgelaufen. Möglicherweise werden alle Verbindungen im Pool bereits verwendet, und die maximale Poolgröße wurde erreicht.
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+2025-09-04 10:40:59,323 [35] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Query.QueryIterationFailed:An exception occurred while iterating over the results of a query for context type 'MirrorRepository.ServiceNowDbSyncMgntEntities'.
+System.InvalidOperationException: Timeout abgelaufen. Das Zeitlimit ist vor dem Anfordern einer Verbindung aus dem Pool abgelaufen. Möglicherweise werden alle Verbindungen im Pool bereits verwendet, und die maximale Poolgröße wurde erreicht.
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+System.InvalidOperationException: Timeout abgelaufen. Das Zeitlimit ist vor dem Anfordern einer Verbindung aus dem Pool abgelaufen. Möglicherweise werden alle Verbindungen im Pool bereits verwendet, und die maximale Poolgröße wurde erreicht.
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+2025-09-04 10:41:04,667 [41] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError:An error occurred using the connection to database 'ServiceNowDbSyncMgnt' on server 'VMSNWQP160\ICTS_SNOW_DWH'.
+2025-09-04 10:41:21,141 [41] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Query.QueryIterationFailed:An exception occurred while iterating over the results of a query for context type 'MirrorRepository.ServiceNowDbSyncMgntEntities'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Es konnte eine Verbindung mit dem Server hergestellt werden, doch während des Handshakes vor der Anmeldung trat ein Fehler auf. (provider: SSL-Anbieter, error: 0 - Der Wartevorgang wurde abgebrochen.) ---> System.ComponentModel.Win32Exception (0x80004005): Der Wartevorgang wurde abgebrochen
+   bei Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   bei Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   bei Microsoft.Data.SqlClient.TdsParser.EnableSsl(UInt32 info, SqlConnectionEncryptOption encrypt, Boolean integratedSecurity, String serverCertificate)
+   bei Microsoft.Data.SqlClient.TdsParser.ConsumePreLoginHandshake(SqlAuthenticationMethod authType, SqlConnectionEncryptOption encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean& marsCapable, Boolean& fedAuthRequired, Boolean tlsFirst, String serverCertificateFilename)
+   bei Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, TimeoutTimer timeout, SqlConnectionString connectionOptions, Boolean withFailover, Boolean isFirstTransparentAttempt, Boolean disableTnir)
+   bei Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, TimeoutTimer timeout, Boolean withFailover, Boolean isFirstTransparentAttempt, Boolean disableTnir)
+   bei Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   bei Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   bei Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, Func`3 accessTokenCallback)
+   bei Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:6caa4cc8-eeb4-41d3-a908-7e262ed0cb3c
+Fehlernummer (Error Number):258,Status (State):0,Klasse (Class):20
+Microsoft.Data.SqlClient.SqlException (0x80131904): Es konnte eine Verbindung mit dem Server hergestellt werden, doch während des Handshakes vor der Anmeldung trat ein Fehler auf. (provider: SSL-Anbieter, error: 0 - Der Wartevorgang wurde abgebrochen.) ---> System.ComponentModel.Win32Exception (0x80004005): Der Wartevorgang wurde abgebrochen
+   bei Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   bei Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   bei Microsoft.Data.SqlClient.TdsParser.EnableSsl(UInt32 info, SqlConnectionEncryptOption encrypt, Boolean integratedSecurity, String serverCertificate)
+   bei Microsoft.Data.SqlClient.TdsParser.ConsumePreLoginHandshake(SqlAuthenticationMethod authType, SqlConnectionEncryptOption encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean& marsCapable, Boolean& fedAuthRequired, Boolean tlsFirst, String serverCertificateFilename)
+   bei Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, TimeoutTimer timeout, SqlConnectionString connectionOptions, Boolean withFailover, Boolean isFirstTransparentAttempt, Boolean disableTnir)
+   bei Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, TimeoutTimer timeout, Boolean withFailover, Boolean isFirstTransparentAttempt, Boolean disableTnir)
+   bei Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   bei Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   bei Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, Func`3 accessTokenCallback)
+   bei Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:6caa4cc8-eeb4-41d3-a908-7e262ed0cb3c
+Fehlernummer (Error Number):258,Status (State):0,Klasse (Class):20
+2025-09-04 10:41:22,005 [59] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError:An error occurred using the connection to database 'ServiceNowDbSyncMgnt' on server 'VMSNWQP160\ICTS_SNOW_DWH'.
+2025-09-04 10:42:33,250 [45] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError:An error occurred using the connection to database 'ServiceNowDbSyncMgnt' on server 'VMSNWQP160\ICTS_SNOW_DWH'.
+2025-09-04 10:42:33,368 [59] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Query.QueryIterationFailed:An exception occurred while iterating over the results of a query for context type 'MirrorRepository.ServiceNowDbSyncMgntEntities'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Es konnte eine Verbindung mit dem Server hergestellt werden, doch während des Handshakes vor der Anmeldung trat ein Fehler auf. (provider: SSL-Anbieter, error: 0 - Der Wartevorgang wurde abgebrochen.) ---> System.ComponentModel.Win32Exception (0x80004005): Der Wartevorgang wurde abgebrochen
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:6caa4cc8-eeb4-41d3-a908-7e262ed0cb3c
+Fehlernummer (Error Number):258,Status (State):0,Klasse (Class):20
+Microsoft.Data.SqlClient.SqlException (0x80131904): Es konnte eine Verbindung mit dem Server hergestellt werden, doch während des Handshakes vor der Anmeldung trat ein Fehler auf. (provider: SSL-Anbieter, error: 0 - Der Wartevorgang wurde abgebrochen.) ---> System.ComponentModel.Win32Exception (0x80004005): Der Wartevorgang wurde abgebrochen
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:6caa4cc8-eeb4-41d3-a908-7e262ed0cb3c
+Fehlernummer (Error Number):258,Status (State):0,Klasse (Class):20
+2025-09-04 10:42:33,435 [12] INFO MirrorRepository.REST.RestClient - reading: api/now/table/sys_dictionary?sysparm_query=name=u_accesscard_autoprofile
+2025-09-04 10:42:37,798 [45] ERROR DbConnection - Id:Microsoft.EntityFrameworkCore.Query.QueryIterationFailed:An exception occurred while iterating over the results of a query for context type 'MirrorRepository.ServiceNowDbSyncMgntEntities'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Es konnte eine Verbindung mit dem Server hergestellt werden, doch während des Handshakes vor der Anmeldung trat ein Fehler auf. (provider: SSL-Anbieter, error: 0 - Der Wartevorgang wurde abgebrochen.) ---> System.ComponentModel.Win32Exception (0x80004005): Der Wartevorgang wurde abgebrochen
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:6caa4cc8-eeb4-41d3-a908-7e262ed0cb3c
+Fehlernummer (Error Number):258,Status (State):0,Klasse (Class):20
+Microsoft.Data.SqlClient.SqlException (0x80131904): Es konnte eine Verbindung mit dem Server hergestellt werden, doch während des Handshakes vor der Anmeldung trat ein Fehler auf. (provider: SSL-Anbieter, error: 0 - Der Wartevorgang wurde abgebrochen.) ---> System.ComponentModel.Win32Exception (0x80004005): Der Wartevorgang wurde abgebrochen
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   bei Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   bei Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   bei Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   bei Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   bei Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   bei Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:6caa4cc8-eeb4-41d3-a908-7e262ed0cb3c
+Fehlernummer (Error Number):258,Status (State):0,Klasse (Class):20
+2025-09-04 10:42:45,069 [12] INFO MirrorRepository.REST.RestClient - read: 200 (OK) req=api/now/table/sys_dictionary?sysparm_query=name=u_accesscard_autoprofile : cookies=BIGipServerpool_a1prod=7a06ca584a1a8cbb2583efb2b5e875fc,glide_user_route=glide.52967ce915cee3da2c6f06512945d26a

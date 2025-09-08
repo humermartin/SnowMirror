@@ -1,0 +1,97 @@
+﻿@model MirrorWeb.ViewModels.Manage.PrincipalSettingsViewModel
+
+<br />
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+
+        <div class="card-body">
+            <div id="managePrincipalSettings" style="margin-left: 0px; margin-right: 0px;">
+
+                <div id="princiapSection" class="col-xl-12 mb-5 mb-xl-0" style="padding: 0px;">
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent custHeaderBackground">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="mb-0 custHeaderColor">Manage Admin Users</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" style="margin-top: 40px; margin-bottom: 40px;">
+                            <div>
+                                <!--Start-->
+                                <h4>PAS - Principal Account Settings</h4>
+                                <hr />
+
+                                <span class="text-danger" id="validateAdUserMessage" style="font-size: 12px;"></span>
+                                <br />
+                                <br />
+
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">AD User</span>
+                                    </div>
+                                    <input id="adUserName" runat="server" type="text" class="k-textbox" placeholder="UID without Domain" aria-describedby="sizing-addon3" style="font-size: 12px; width: 200px;" />
+                                    <button id="btnSearchAdUser" type="button" class="btn custHeaderBackground" onclick="SearchAdUser()" style="font-size: 10px; color: white">Search</button>
+                                </div>
+
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">AD User</span>
+                                    </div>
+                                    <input id="idSamAccountname" type="text" class="k-textbox" aria-describedby="sizing-addon3" disabled="disabled" style="font-size: 12px; width: 200px;" />
+                                </div>
+
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Firstname</span>
+                                    </div>
+                                    <input id="idFirstName" type="text" class="k-textbox" aria-describedby="sizing-addon3" disabled="disabled" style="font-size: 12px; width: 200px;" />
+                                </div>
+
+                                <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="width: 200px; font-size: 12px;">Lastname</span>
+                                    </div>
+                                    <input id="idLastName" type="text" class="k-textbox" aria-describedby="sizing-addon3" disabled="disabled" style="font-size: 12px; width: 200px;" />
+                                </div>
+
+
+                                <div class="input-group input-group-sm" style="margin-bottom: 5px;">
+                                    <span class="input-group-text" style="width: 200px; font-size: 12px;">Role</span>
+                                    @Html.DropDownListFor(model => model.ManagementRoles, Model.ManagementRoles, "", new { @class = "k-content", @style = "margin-left: 30px; font-size: 12px; width: 200px;", @id = "idManagementRoles" })
+                                </div>
+
+                                <div align="center" style="text-align: center; width: 100%; margin-top: 70px;">
+                                    <hr />
+                                    <button id="btnRegisterAdUser" class="btn custHeaderBackground" disabled="disabled" onclick="AddAdUser()" style="font-size: 12px; color: white">Register</button>
+                                </div>
+
+
+                                <br />
+                                <hr />
+                                <br />
+
+                                <h4>Assigned AD Users</h4>
+                                <hr />
+                                <span class="text-danger" id="validateAdUserListMessage" style="font-size: 12px;"></span>
+                                <br />
+
+                                <div id="assignedAdUsersGrid" style="font-size: 12px;"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<div id="dialog"></div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/syncAdminSettings")
+}

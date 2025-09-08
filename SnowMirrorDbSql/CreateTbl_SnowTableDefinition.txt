@@ -1,0 +1,45 @@
+USE [ServiceNowDbSyncMgnt]
+GO
+
+/****** Object:  Table [dbo].[SnowTableDefinition]    Script Date: 08.09.2025 09:58:30 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[SnowTableDefinition](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Table] [varchar](255) NOT NULL,
+	[Columns] [varchar](max) NULL,
+	[PostScripts] [varchar](max) NULL,
+	[InstanceId] [uniqueidentifier] NOT NULL,
+	[CreateTime] [datetime] NULL,
+	[ThreadsPerTable] [int] NULL,
+	[ThreadSleepTime] [int] NULL,
+	[PageSize] [int] NULL,
+	[RequestTimeout] [int] NULL,
+	[Enabled] [bit] NULL,
+	[TableParams] [varchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[SnowTableDefinition] ADD  DEFAULT (NULL) FOR [ThreadsPerTable]
+GO
+
+ALTER TABLE [dbo].[SnowTableDefinition] ADD  DEFAULT (NULL) FOR [ThreadSleepTime]
+GO
+
+ALTER TABLE [dbo].[SnowTableDefinition] ADD  DEFAULT (NULL) FOR [PageSize]
+GO
+
+ALTER TABLE [dbo].[SnowTableDefinition] ADD  DEFAULT (NULL) FOR [RequestTimeout]
+GO
+
+ALTER TABLE [dbo].[SnowTableDefinition] ADD  DEFAULT ((1)) FOR [Enabled]
+GO
+
+ALTER TABLE [dbo].[SnowTableDefinition] ADD  DEFAULT (NULL) FOR [TableParams]
+GO
+
+

@@ -1,0 +1,21 @@
+﻿@model MirrorWeb.ViewModels.Manage.SynchronizationViewModel
+
+<br />
+
+<div class="container body-content" align="center">
+
+    <div id="snycSettings">
+
+        <div id="singleSyncView">
+            @Html.Partial("_BulkSyncSettings", Model)
+        </div>
+        
+    
+     </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/syncsettings")
+}

@@ -1,0 +1,113 @@
+﻿@model MirrorWeb.ViewModels.Manage.SynchronizationViewModel
+
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+        <!--Start-->
+        <div class="card-body">
+            <div id="snycBulkTableSettings" style="margin-left: 0px; margin-right: 0px;">
+
+                <div id="syncSettingsData" class="col-xl-12 mb-5 mb-xl-0" style="padding: 0px;">
+                    
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent custHeaderBackground">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="text-black-50 mb-0 custHeaderColor">Synchronization Settings</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div style="margin-left: 10px; margin-right: 10px;">
+                                <div class="row">
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Synchronization Name</span>
+                                        </div>
+                                        <input id="synchronizationNameId" type="text" disabled="disabled" class="form-control" placeholder="@Model.SynchronizationName" aria-label="" aria-describedby="basic-addon1" value="@Model.SynchronizationName" style="font-size: 12px;">
+                                        <input id="synchronizationGuid" type="text" disabled="disabled" class="form-control" aria-label="" aria-describedby="basic-addon1" value="@Model.SynchronizationId" style="font-size: 12px;">
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-bottom: 20px;">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" style="width: 200px;  font-size: 12px;">Tables</span>
+                                        </div>
+                                        <textarea id="bulkTableList"
+                                                  class="form-control"
+                                                  readonly="readonly"
+                                                  aria-describedby="sizing-addon3"
+                                                  style="overflow: scroll; height: 200px; width: 80%; max-width: 100%; font-size: 12px;">@String.Join(", ", Model.SnowTables.Select(s => s.Name))
+                                        </textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1" style="width: 200px; font-size: 12px;">Auto Schema Update</span>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"
+                                                   class="bootstrap-switch"
+                                                   name="checkAutoSchemaUpdate"
+                                                   id="chkAutoSchemaUpdate"
+                                                   data-on-text="Ein"
+                                                   data-off-text="Aus"
+                                                   data-on-color="success"
+                                                   data-off-color="primary"
+                                                   data-size="small"
+                                                   checked="@Model.AutoSchemaUpdate"
+                                                   style="font-size: 12px;" />
+                                        </div>
+                                        <span id="autoSchemaUpdateSelected" style="visibility: hidden"></span>
+                                    </div>
+                                </div>
+
+                                <!-- table list -->
+                                <div class="row">
+                                    <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Select columns for Table</span>
+                                        </div>
+
+                                        <select class="k-content" id="selectTableColumns" name="selectTableColumns" style="font-size: 12px; width: 175px;">
+                                            @foreach (var table in Model.GetColumnRestricedTables())
+                                            {
+                                                if (table.HasColumnRestriction)
+                                                {
+                                                    <option id="@table.Name" value="@table.Name" style="color: orange">@table.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option id="@table.Name" value="@table.Name">@table.Name</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- column list -->
+                                <div class="row">
+                                    <div id="snowColumnsGrid" style="font-size: 12px; margin-bottom: 20px;"></div>
+                                    <script id="template" type="text/x-kendo-template">
+                                        <a id="saveColChangesId" class="btn btn-sm custHeaderBackground" href="\#" onclick="return SaveColumnSelection()" style="font-size: 12px; color: white;">Command</a>
+                                    </script>
+                                </div>
+                                
+                                <div class="row">
+                                    <div id="snowScriptsGrid" style="font-size: 12px; margin-bottom: 20px; margin-top: 40px;"></div>
+                                </div>
+
+                                <div id="btnBulkSelected">
+                                    <button class="btn custHeaderBackground" id="syncSettingsNext" style="font-size: 12px; color: white; width: 100px;">Next</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

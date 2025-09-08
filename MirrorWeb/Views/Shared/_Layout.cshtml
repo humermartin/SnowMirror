@@ -1,0 +1,87 @@
+﻿@using System.Configuration
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="~/Content/images/favicon.ico" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/4c6e3b1c52.js" crossorigin="anonymous"></script>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <script type="text/javascript">
+        var vPath = '@ConfigurationManager.AppSettings["VirtualPath"]';
+    </script>
+
+    <div id="mirrorHeader" class="bg-a1group navbar navbar-expand-lg fixed-top navbar-dark" >
+        <div class="container">
+            @Html.ActionLink("SnowMirror-DataReplication", "Dashboard", "Manage", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Dashboard", "Dashboard", "Manage", new { area = "" }, new { @class = "nav-link", @id = "manageDashboard" })</li>
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-item">@Html.ActionLink("Configure", "Synchronization", "Manage", new { area = "" }, new { @class = "nav-link", @id = "manageSynchronization" })</li>
+                        <li class="nav-item">@Html.ActionLink("Synchronizations", "RunningSynchronization", "Manage", new { area = "" }, new { @class = "nav-link", @id = "manageSynchronization" })</li>
+                        <li class="nav-item">@Html.ActionLink("Live", "SynchronizationSettings", "Manage", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Monitoring", "Main", "Monitoring", new { area = "" }, new { @class = "nav-link", @id = "monitoring" })</li>
+                        <li><input id="navTableSearch" type="text" style="border-radius: 10px;border: 1px solid #2d9fd9;width: 180px;margin-left: 15px;margin-top: 8px;margin-right: 15px;font-family: Arial;font-size: 14px;text-align: center;color: grey;"></li>
+
+                    }
+
+
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+
+                @*Admin settings*@
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a href="@Url.Action("Settings", "Manage")" class="nav-link">
+                        <i class="fa fa-gears" style="color: #ffffff80"></i>
+                    </a>
+                }
+            </div>
+
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - A1-SnowMirror Replication. Version - @typeof(MirrorWeb.MvcApplication).Assembly.GetName().Version</p>
+        </footer>
+        
+        <!-- table search popup-->
+        <div id="tableSearchPopUp" style="display: none; text-align: center; margin-top: 20px;">
+            
+            <div id="tableMetaData" style="margin: 10px; margin-left: 50px;">
+
+                
+            </div>
+
+        </div>
+    </div>
+    
+    
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/main")
+
+    @RenderSection("scripts", required: false)
+
+    
+
+</body>
+</html>

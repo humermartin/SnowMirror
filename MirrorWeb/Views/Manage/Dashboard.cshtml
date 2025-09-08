@@ -1,0 +1,312 @@
+﻿@using System.Configuration
+@using System.Diagnostics
+@using MirrorRepository.Enums
+@model MirrorWeb.ViewModels.Manage.DashboardViewModel
+
+<br />
+
+<div class="row">
+
+    <div class="col-xl-8 mb-5 mb-xl-0">
+        <div class="card shadow">
+            <div class="card-header border-0 custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="mb-0 custHeaderColor">Failed sychronizations</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div style="overflow-y: auto; max-height: 280px;">
+                    <!-- failed synchronizations -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Table</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Error</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 14px;">
+                            @foreach (var failedSync in Model.FailedSynchronizations.Take(20))
+                            {
+                                <tr>
+
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <th scope="row">
+                                            @Html.ActionLink(failedSync.TableName + "[" + failedSync.Synchronization.Name + "]", "RunningSynchronization", "Manage", new { syncId = failedSync.SynchronizationId }, new { @style = "color:#dc3545;" })
+                                        </th>
+                                    }
+                                    else
+                                    {
+                                        <th scope="row">
+                                            <span style="color: #dc3545;">@failedSync.TableName<span>[@failedSync.Synchronization.Name]</span></span>
+                                        </th>
+                                    }
+                                    <td>
+                                        @if (failedSync.SyncTime.HasValue)
+                                        {
+                                            <span>@failedSync.SyncTime.Value.ToString("dd.MM.yyyy HH:mm:ss")</span>
+                                        }
+                                    </td>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <th scope="row">
+                                            @Html.ActionLink(failedSync.FinalErrorMessage, "RunningSynchronization", "Manage", new { syncId = failedSync.SynchronizationId }, new { @style = "color:#dc3545;" })
+                                        </th>
+                                    }
+                                    else
+                                    {
+                                        <th scope="row">
+                                            <span style="color: #dc3545;">@failedSync.FinalErrorMessage</span>
+                                        </th>
+                                    }
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="mb-0 custHeaderColor">Last Synchronizations</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div style="overflow-y: auto; max-height: 280px;">
+                    <!-- Synchronization table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Start Date</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 14px;">
+                            @foreach (var syncronization in Model.Synchronizations.Take(20))
+                            {
+                                <tr>
+                                    <th scope="row">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            if (syncronization.Name.Length > 15)
+                                            {
+                                                @Html.ActionLink(syncronization.Name.Substring(0, 15) + "...", "RunningSynchronization", "Manage", new { syncId = syncronization.Id }, null)
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink(syncronization.Name, "RunningSynchronization", "Manage", new { syncId = syncronization.Id }, null)
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (syncronization.Name.Length > 15)
+                                            {
+                                                <span>@syncronization.Name.Substring(0, 15)...</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@syncronization.Name</span>
+                                            }
+                                        }
+                                    </th>
+                                    <td>
+                                        @if (syncronization.StartDate.HasValue)
+                                        {
+                                            <span>@syncronization.StartDate.Value.ToString("dd.MM.yyyy HH:mm:ss")</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <!--last successfully synchronizations -->
+    <div class="col-xl-8 mb-5 mb-xl-0">
+        <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="text-black mb-0 custHeaderColor">Last successfully synchronized tables</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div style="overflow-y: auto; max-height: 200px;">
+                    <!-- Synchronization table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">TableName</th>
+                                <th scope="col">End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 14px;">
+                            @foreach (var syncronization in Model.LastSuccessSynchronizations.Take(20))
+                            {
+                                <tr>
+                                    <th scope="row" style="color: green">
+                                        <span>@syncronization.TableName<span>[@syncronization.Key.Split(':').Last()]</span></span>
+                                    </th>
+                                    <td>
+                                        @if (syncronization.EndTime.HasValue)
+                                        {
+                                            <span>@syncronization.EndTime.Value.ToString("dd.MM.yyyy HH:mm:ss")</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- summary -->
+    <div class="col-xl-4">
+        <div class="card shadow">
+            <div class="card-header border-0 custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col custHeaderColor">
+                        <h4 class="mb-0">Summary</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive" style="height: 240px;">
+                <!-- Projects table -->
+                <table class="table align-items-center table-flush">
+                    <tbody style="font-size: 14px;">
+                        <tr>
+                            <th scope="row">
+                                Total number of synchronizations
+                            </th>
+                            <td>
+                                <span>@Model.TotalNumberOfSynchronizations</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Last synchronization successfully finished on
+                            </th>
+                            <td>
+                                @if (@Model.LastSuccessSync.HasValue)
+                                {
+                                    <span>@Model.LastSuccessSync.Value.ToString("dd.MM.yyyy HH:mm:ss")</span>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Total number of failed synchronizations
+                            </th>
+                            <td>
+                                <span>@Model.FailedSynchronizations.Count()</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Live running synchronizations -->
+<div class="row mt-5">
+    
+    <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="text-black mb-0 custHeaderColor">Running Synchronizations<span class="text-black mb-0 custHeaderColor" id="runSyncCount"></span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div id="runningSyncGrid" style="font-size: 14px;"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <!-- Synchronizations from SyncType DELTA-->
+    <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="text-black mb-0 custHeaderColor">Delta Synchronizations </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="plannedDeltaSyncGrid" style="font-size: 14px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <!-- Synchronization History from SyncType FULL-->
+    <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="text-black mb-0 custHeaderColor">Full Synchronizations</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div id="plannedFullSyncGrid" style="font-size: 14px;"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <!-- Synchronizations from SyncType KAFKA-->
+    <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent custHeaderBackground">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="text-black mb-0 custHeaderColor">Kafka Synchronizations </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="kafkaDeltaSyncGrid" style="font-size: 14px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/dashboard")
+}

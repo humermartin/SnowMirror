@@ -1,0 +1,23 @@
+﻿@model MirrorWeb.ViewModels.SnowDbSyncRegisterViewModel
+
+@{
+    ViewBag.Title = "SnowDbSync";
+}
+
+<div class="jumbotron">
+    <div style="float: left; width: 100px;">
+        <img src="../../Content/images/a1_red.png" style="float: left" />
+    </div>
+    <div>
+        <h1>SNOW Db Sync Management</h1>
+    </div>
+    
+    
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p class="text-success">@ViewBag.StatusMessage</p>
+
+   
+}

@@ -1,0 +1,160 @@
+﻿@model MirrorWeb.ViewModels.Manage.SynchronizationViewModel
+
+@{
+    ViewBag.Title = "Synchronization";
+}
+
+<br />
+
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+        <!--Start-->
+        <div class="card-body">
+            <div id="enabledSynchronizations" style="margin: 20px;">
+
+                <div id="syncData" class="col-xl-12 mb-5 mb-xl-0" style="padding: 0px;">
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent custHeaderBackground">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="text-black-50 mb-0 custHeaderColor">Synchronizations</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div>
+
+                                <div class="container-fluid" style="margin-bottom: 20px; width: 100%; text-align: center">
+                                    <div class="row">
+                                        <div style="width: 50%">
+                                            <!-- Synchronizations -->
+                                            <p style="margin-right: 20px;">
+                                                <button class="btn custHeaderBackground"
+                                                        id="btnCreateNewSync"
+                                                        type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseCreateSync"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapseCreateSync"
+                                                        style="font-size: 12px; width: 70px; height: 70px; float: right; color: white">
+                                                    Create New
+                                                </button>
+                                            </p>
+                                        </div>
+                                        <div style="width: 50%">
+                                            <p style="margin-left: 20px;">
+                                                <button class="btn custHeaderBackground"
+                                                        id="btnLoadSync"
+                                                        type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseExistingSyncs"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapseExistingSyncs"
+                                                        style="font-size: 12px; width: 70px; height: 70px; float: left; color: white">
+                                                    Load Sync
+                                                </button>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- select existing synchronization -->
+                                <div class="collapse" id="collapseExistingSyncs" style="text-align: center; width: 100%; margin:auto ">
+                                    <hr class="k-separator" />
+                                    @*<div class="row">*@
+                                        <div class="input-group input-group-sm" style="margin: auto; float: left; width: 50%">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 150px; font-size: 12px">Edit Assistant</span>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group">
+                                                @Html.DropDownListFor(m => m.SynchronizationId, Model.Synchronizations, "", new { @id = "existingSynchronizationId", @class = "k-content", @style = "font-size: 12px; width: 200px;" })
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="input-group input-group-sm" style="margin: auto; width: 50%">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 150px; font-size: 12px">Edit Scheduler</span>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group">
+                                                @Html.DropDownListFor(m => m.SynchronizationId, Model.Synchronizations, "", new { @id = "schedulerSynchronizationId", @class = "k-content", @style = "font-size: 12px; width: 200px;" })
+                                            </div>
+                                        </div>
+                                    @*</div>*@
+                                </div>
+
+                                <!-- create new synchronization -->
+                                <div class="collapse" id="collapseCreateSync" style="text-align: center; width: 450px; margin:auto ">
+                                    <hr class="k-separator" />
+                                    <div class="row" style="margin: 20px;">
+                                        @Html.ValidationSummary(false, "", new { @id = "validationSummaryId", @class = "text-danger", @style = "font-size: 12px; width: 350px; margin-left:10px;" })
+
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 150px; font-size: 12px;">Synchronization Name</span>
+                                            </div>
+                                            <input type="text" class="k-textbox" id="selSyncName" style="font-size: 12px; height: 32px; width: 230px;" />
+                                            <input type="text" class="k-textbox" id="selSyncId" style="display: none;" />
+                                        </div>
+
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 150px; font-size: 12px">SnowInstance Settings</span>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group">
+                                                @Html.DropDownListFor(m => m.SelectedInstanzSettingsId, Model.InstanzSettings, "", new { @id = "selIstanceSettings", @class = "k-content", @style = "font-size: 12px; width: 230px; text-align:center;" })
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Target Settings -->
+                                        <div class="input-group input-group-sm" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 150px; font-size: 12px;">Target</span>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group">
+                                                @Html.DropDownListFor(d => d.SelectedSyncTarget, new SelectList(Model.SyncTargets, "Value", "Text", 0), new { @class = "k-content", @id = "targetSettingId", @style = "font-size: 12px; width:230px; text-align:center;" })
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="input-group input-group-sm" id="dbSettingRow" style="margin-bottom: 20px;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="width: 150px; font-size: 12px">Database Settings</span>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group">
+                                                @Html.DropDownListFor(m => m.SelectedDatabaseSettingsId, Model.DatabaseSettings, "", new { @id = "selDatabaseSettings", @class = "k-content", @style = "font-size: 12px; width: 230px; text-align:center;" })
+                                            </div>
+                                        </div>
+
+                                        <div style="margin: auto; text-align: center">
+                                            <button class="btn custHeaderBackground" id="createNewSync" style="font-size: 12px; color: white" onclick="CreateNewSynchronization();">Load SNOW Tables</button>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div id="tableSyncGrid" style="font-size: 12px; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;"></div>
+
+            <div id="btnTableSelected" style="display: none; text-align: center">
+                <button id="tableGridNext" class="btn custHeaderBackground" style="font-size: 12px; color: white; width: 100px;">Next</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/synchronization")
+}

@@ -1,0 +1,29 @@
+USE [ServiceNowDbSyncMgnt]
+GO
+
+/****** Object:  Table [dbo].[DatabaseSettings]    Script Date: 08.09.2025 09:53:57 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DatabaseSettings](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Servername] [varchar](100) NOT NULL,
+	[Port] [int] NOT NULL,
+	[Instancename] [varchar](100) NOT NULL,
+	[Databasename] [varchar](100) NOT NULL,
+	[Schemaname] [varchar](100) NOT NULL,
+	[Username] [varchar](100) NOT NULL,
+	[Password] [varchar](100) NOT NULL,
+	[Created] [date] NOT NULL,
+	[LastChanged] [date] NOT NULL,
+ CONSTRAINT [PK_DatabaseSettings] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+

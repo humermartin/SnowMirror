@@ -1,0 +1,66 @@
+﻿@model MirrorWeb.ViewModels.Manage.InheritanceSettingsViewModel
+
+<br />
+<div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card ktb-var-normal-gradient shadow">
+
+        <div class="card-body">
+            <div id="generalSettings" align="center" style="text-align: center">
+
+                <div class="card shadow">
+                    <div class="card-header bg-transparent custHeaderBackground">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="mb-0 custHeaderColor">Inheritance Settings</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tableInheritanceSettingSection" style="width: 100%;">
+
+                        <div class="card" style="width: 96%; margin: 20px;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align: left">ServiceNOW Table Inheritance</h5>
+                                <p class="card-text" style="font-size: 14px; text-align: left">
+
+                                </p>
+
+                                <hr />
+
+                                <div style="margin-right: 10px;">
+
+                                    @*<div class="input-group">
+                                            <div class="input-group-prepend" style="width: 100%">
+                                                <span class="input-group-text" style="font-size: 12px;">Enter parent table</span>
+                                            </div>
+                                            <input type="text" id="parentTableName" class="form-control" style="font-size: 12px; width: 500px">
+                                        </div>
+                                        <br/>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend" style="width: 100%">
+                                                <span class="input-group-text" style="font-size: 12px;">Enter tables the are inherit from parent. Comma separated</span>
+                                            </div>
+                                            <input type="text" id="childTableName" class="form-control" style="font-size: 12px; width: 100% !important">
+                                        </div>
+                                        <br />
+                                        <a id="addInheritRecordId" class="btn btn-sm custHeaderBackground" href="\\#" onclick="return AddTableInheritRecord()" style="font-size: 12px; color: white; width: 50px;">Add</a>*@
+
+                                </div>
+
+                                <div id="inheritedTablesGrid" style="font-size: 12px;"></div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/syncAdminSettings")
+}

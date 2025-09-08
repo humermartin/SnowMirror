@@ -1,0 +1,64 @@
+﻿@model MirrorWeb.ViewModels.LoginViewModel
+
+<br />
+
+<div class="container body-content" align="center" style="margin-bottom: 40px;">
+
+    <div class="col-xl-10 mb-5 mb-xl-0">
+        @*<div class="card ktb-var-normal-gradient shadow">*@
+
+            @*<div class="card-body">*@
+
+                <div class="card shadow" style="max-width: 500px; margin:20px;">
+                    <div class="card-header bg-transparent custHeaderBackground">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h5 class="text-white-50 mb-0 custHeaderColor">Use a local account to log in</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <section id="loginForm">
+                                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger", @style = "font-size: 13px; width: 300px; text-align: center;" })
+                                    
+                                    <div class="input-group form-group col-md-6" style="width: 50%">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user" style="margin-left: 15px;"></i></span>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "UserName", @style = "font-size:12px; height: 30px;" })
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    <div class="input-group form-group col-md-6" style="width: 50%">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key" style="margin-left: 15px;"></i></span>
+                                        </div>
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder="Password", @style= "font-size:12px; height: 30px;" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", @autocomplete = "off" })
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <hr />
+                                        <div class="col-md-10">
+                                            <input type="submit" value="Log in" class="btn custHeaderBackground" style="font-size: 12px; color: white; width: 100px;" />
+                                        </div>
+                                    </div>
+
+                                }
+                            </section>
+                        </div>
+                    </div>
+                @*</div>*@
+            @*</div>*@
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,502 @@
+﻿@model MirrorWeb.ViewModels.Manage.SyncQueueViewModel
+
+<br />
+<div class="container body-content" align="center" style="padding-left: 0px; padding-right: 0px;">
+    <div class="col-xl-12 mb-5 mb-xl-0" style="padding-left: 0px; padding-right: 0px;">
+        <div class="card ktb-var-normal-gradient shadow">
+
+            <div class="card-body">
+                <div id="enabledSynchronizations" style="margin-left: 0px; margin-right: 0px;">
+
+                    <div id="syncData" class="col-xl-12 mb-5 mb-xl-0" style="padding: 0px;">
+                        <div class="card shadow">
+                            <div class="card-header bg-transparent custHeaderBackground">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="mb-0 custHeaderColor">Synchronizations</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div>
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <!-- Instance -->
+                                                <div class="input-group input-group-sm">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" style="font-size: 12px;">Instance</span>
+                                                    </div>
+                                                    @using (Html.BeginForm("RunningSynchronization", "Manage"))
+                                                    {
+                                                        if (Model.InstanceList != null)
+                                                        {
+                                                            @Html.DropDownListFor(s => s.SelectedInstanceId, new SelectList(Model.InstanceList, "Value", "Text", 0), new { @class = "k-content", @id = "instanceList", @onchange = "this.form.submit();", @style = "font-size: 12px; width: 80px; height: 32px;" })
+                                                        }
+                                                    }
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3" style="max-width: 20%">
+                                                <!-- Synchronizations SqlDb -->
+                                                <div class="input-group input-group-sm" style="width: 250px;">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" style="font-size: 12px;">Sql</span>
+                                                    </div>
+                                                    @if (Model.SyncNameListSqlDb != null)
+                                                    {
+                                                        @Html.DropDownListFor(s => s.SelectedSynchronizationIdSqlDb, new SelectList(Model.SyncNameListSqlDb, "Value", "Text", 0), new { @class = "k-content", @id = "syncQueueListTargetSqlDb", @onchange = "SelectSyncName('Sql');", @style = "font-size: 12px; width: 180px;" })
+                                                    }
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3" style="max-width: 20%">
+                                                <!-- Synchronizations Kafka -->
+                                                <div class="input-group input-group-sm" style="width: 250px;">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" style="font-size: 12px;">Kafka</span>
+                                                    </div>
+                                                    @if (Model.SyncNameListKafka != null)
+                                                    {
+                                                        @Html.DropDownListFor(s => s.SelectedSynchronizationIdKafka, new SelectList(Model.SyncNameListKafka, "Value", "Text", 0), new { @class = "k-content", @id = "syncQueueListTargetKafka", @onchange = "SelectSyncName('Kafka');", @style = "font-size: 12px; width: 180px;" })
+                                                    }
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <p>
+                                                    <button class="btn custHeaderBackground"
+                                                            id="curSyncParameters"
+                                                            type="button"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseCurSyncParams"
+                                                            aria-expanded="false"
+                                                            aria-controls="collapseCurSyncParams"
+                                                            style="font-size: 12px; color: white; display: none">
+                                                        Synchronization Parameters
+                                                    </button>
+                                                </p>
+                                                <div class="collapse" id="collapseCurSyncParams">
+                                                    <!-- SyncType -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Sync Type</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncType" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- SyncTarget -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Sync Target Type</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncTarget" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- KafkaMode -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Kafka Mode</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="kafkaMode" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Endpoint -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Endpoint</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncEndpoint" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- SyncInterval -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Sync Interval</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncInterval" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- SyncInterval Time -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Interval Minutes</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curIntervalMinutes" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- AutoSchemaUpdate -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">AutoSchemaUpdate</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncAutoSchemaUpdate" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Max Threads -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Max Threads</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curMaxThreads" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Threads per Table -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Threads/Table</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curThreadsPerTable" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Threads Sleep Time Table -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Threads Sleep Time (sec)</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curThreadSleepTime" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- RequestTimeout -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Request Timeout (sec)</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curRequestTimeout" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- MaxErrorsPerPage -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Max Errors/Page</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curMaxErrorsPerPage" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- PageSize -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Page Size</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curPageSize" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- KafkaBlockSize -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Kafka Block Size</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="kafkaBlockSize" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Database Server -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Database Server</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncDatabaseServer" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Database -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Database Name</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncDatabase" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Snow Instance -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Snow Instance</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncSnowInstance" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Custom Delta Start Time -->
+                                                    <div class="row" id="custDeltaStartRow">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Custom Delta Start</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="custDeltaStartTime" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Start Time -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Start Time</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncStartTime" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Time -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">End Time</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncEndTime" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Final Message -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Final Message</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncFinalMessage" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Final Error Message -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Final Error Message</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncFinalErrorMessage" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Created -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Created</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curSyncCreated" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+                                                    <!-- Next Planned Sync -->
+                                                    <div class="row">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" style="width: 200px;font-size: 12px;">Next Planned Sync</span>
+                                                            </div>
+                                                            <input type="text" disabled="disabled" class="k-textbox" id="curNextPlannedSync" style="font-size: 12px; width: 270px;" />
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Edit Scheduler-->
+                                                    <p>
+                                                        <button class="btn custHeaderBackground"
+                                                                id="editCustomDeltaStart"
+                                                                type="button"
+                                                                style="font-size: 12px; color: white; height: 29.16px;">
+                                                            Edit Synchronization
+                                                        </button>
+
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="syncQueueGrid" style="font-size: 12px; margin-top: 20px;"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- modal window - set single table rerun parameters -->
+<div id="kModalReRunSettings" style="display: none; text-align: center; margin-top: 20px;">
+
+    <div class="row">
+        <div style="height: 450px; width: 600px; text-align: center">
+
+            <span id="rerunTableName" hidden="hidden"></span>
+
+            <div class="row" id="rerunInputFields" style="display: block; width: 600px;">
+
+                <!-- Enabled-->
+                <div class="row" id="paramEnabled">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-left: 80px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Enabled</span>
+                        </div>
+                        <input type="checkbox"
+                               style="font-size: 12px"
+                               class="bootstrap-switch"
+                               name="checkRerunEnabled"
+                               id="rerunEnabled"
+                               data-on-text="Ein"
+                               data-off-text="Aus"
+                               data-on-color="success"
+                               data-off-color="primary"
+                               data-size="small" />
+
+                    </div>
+                    <span id="enabledStateId"></span>
+                </div>
+
+                <!-- Threads per Table -->
+                <div class="row" id="paramThreadsPerTable">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-left: 80px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Threads per Table (20)</span>
+                        </div>
+                        <input type="number" class="k-textbox" id="rerunThreadsPerTable" style="font-size: 12px; width: 175px; height: 32px;" />
+                    </div>
+                </div>
+
+                <!-- Thread sleep-time-->
+                <div class="row" id="paramThreadSleepTime">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-left: 80px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Thread Sleep Time (1 sec)</span>
+                        </div>
+                        <input type="number" class="k-textbox" id="rerunThreadSleepTime" style="font-size: 12px; width: 175px; height: 32px;" />
+                    </div>
+                </div>
+
+                <!-- PageSize-->
+                <div class="row" id="paramPageSize">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-left: 80px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Page Size</span>
+                        </div>
+                        <input type="number" class="k-textbox" id="rerunPageSize" style="font-size: 12px; width: 175px; height: 32px;" />
+                    </div>
+                </div>
+
+                <!-- Request Timeout-->
+                <div class="row" id="paramRequestTimeout">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-left: 80px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Request Timeout</span>
+                        </div>
+                        <input type="number" class="k-textbox" id="rerunRequestTimeout" style="font-size: 12px; width: 175px; height: 32px;" />
+                    </div>
+                </div>
+
+                <!-- Enable Table Inheritance-->
+                <div class="row" id="paramEnableTableInheritance" style="display: none">
+                    <div class="input-group input-group-sm" style="margin-left: 80px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Enable Table Inheritance</span>
+                        </div>
+                        <input type="checkbox"
+                               style="font-size: 12px"
+                               class="bootstrap-switch"
+                               name="checkRerunTableInheritance"
+                               id="rerunTableInheritance"
+                               data-on-text="Ein"
+                               data-off-text="Aus"
+                               data-on-color="success"
+                               data-off-color="primary"
+                               data-size="small" />
+
+                    </div>
+                    <span id="tableInheritanceStateId"></span>
+                </div>
+
+                <!-- Custom DeltaStart-->
+                <div class="row" id="paramCustomDeltaStart">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-left: 80px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Custom DeltaStart</span>
+                        </div>
+                        <input id="rerunCustomDeltaStart" title="datepicker" style="font-size: 12px; width: 175px; height: 30px;" />
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; margin-left: 70px;">
+                    <button id="btnSaveSyncParams" class="btn btn-info" onclick="UpdateSyncProcessParams()" 
+                            style="font-size: 12px; color: white; background-color: #820000; width: 100px; margin-right: 160px;">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- modal window - set custom delta time for whole sync -->
+<div id="kModalSetCustomDelta" style="display: none; text-align: center; margin-top: 20px;">
+
+    <div class="row">
+        <div style="height: 300px; width: 500px; text-align: center">
+
+            <span id="customDeltaSyncId" hidden="hidden"></span>
+
+            <div class="row" id="setCustomDeltaFields" style="display: block; width: 480px; margin-left: 20px;">
+
+                <div class="card" style="width: 96%; margin-bottom: 20px;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: left"></h5>
+                        <p id="customDeltaSyncName" class="card-text" style="font-size: 14px; text-align: left">
+                            <ul style="text-align: left; font-size: 14px;">
+                                <li>All tables from this synchronizations will start from this custom start time</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Custom DeltaStart-->
+                <div class="row" id="pSetCustomDeltaStart">
+                    <div class="input-group input-group-sm" style="margin-bottom: 20px; margin-left: 50px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 200px; font-size: 12px;">Custom start time</span>
+                        </div>
+                        <input id="paramSetCustomDeltaStart" title="datepicker" style="font-size: 12px; height: 30px; width: 175px;" />
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button id="btnSetCustomDelta" class="btn btn-info" onclick="UpdateSetCustomDelta()" style="font-size: 12px; color: white; width: 100px; background-color: #820000;">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/syncQueue")
+    @Scripts.Render("~/bundles/kendo")
+
+
+<script type="text/x-kendo-template" id="retrySelectedTablesTemplate">
+
+    <div class="toolbar">
+        <button id="exportToExcel" class="btn custHeaderBackground k-grid-excel" style="font-size: 12px; color: white; float:left;">Export Excel</button>
+        <button id="exportToPdf" class="btn custHeaderBackground k-grid-pdf" style="font-size: 12px; color: white; float:left; margin-left: 10px;">Export Pdf</button>
+        <button id="retrySelectedTables" class="btn custHeaderBackground" style="font-size: 12px; color: white; float:left; display: none; margin-left: 10px;" onclick="RetrySync()">Retry selected Tables</button>
+        <button id="startTestSync" class="btn custHeaderBackground" style="font-size: 12px; color: white; float:right; margin-right:10px;" onclick="StartTestSync()">Run Sync</button>
+        <button id="setCustomDelta" class="btn custHeaderBackground" style="font-size: 12px; color: white; float:right; margin-right:10px;" onclick="SetCustomDelta()">Set Custom Delta</button>
+    </div>
+
+</script>
+
+
+}
